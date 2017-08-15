@@ -1,8 +1,7 @@
 react-hotkeys
 ---
 
-React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts. Uses a fork of [hotkeys.js](https://github.com/jaywcjlove/hotkeys) for keydown detection of special characters.
-
+React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts. Uses a fork of [hotkeys.js](https://github.com/jaywcjlove/hotkeys) for keydown detection of special characters. You give it a keymap of shortcuts & it bind it to the mousetrap singleton. The, it'll unbind it when the component unmounts.
 
 ## Example
 
@@ -51,5 +50,31 @@ export default class HotkeysDemo extends Component {
     )
   }
 }
-
 ```
+## API 
+
+### keyName
+
+Supported keys `⇧`, `shift`, `option`, `⌥`, `alt`, `ctrl`, `control`, `command`, `⌘` .
+
+`⌘` Command()  
+`⌃` Control  
+`⌥` Option(alt)  
+`⇧` Shift  
+`⇪` Caps Lock   
+~~`fn` Function key is `fn` (not supported)~~  
+`↩︎` return/enter
+`space` space keys
+
+### onKeyDown
+
+Callback function to be called when user pressed the target buttons
+`space` space keys
+
+### onKeyUp
+
+Callback function to be called when user key uped the target buttons
+
+## License
+
+MIT
