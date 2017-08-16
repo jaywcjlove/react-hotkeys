@@ -4,9 +4,35 @@
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
   },
+  "dependencies": {
+    "hotkeys-js": "^2.0.2"
+  },
+  "peerDependencies": {
+    "react": "15.x"
+  },
+  "devDependencies": {
+    "nwb": "0.18.x",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "homepage": "",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/jaywcjlove/react-hotkeys.git"
@@ -20,12 +46,7 @@
     "key",
     "keys",
     "keyboard",
-    "shortcuts"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "hotkeys-js": "^2.0.2",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1"
-  }
+    "shortcuts",
+    "react-component"
+  ]
 }
