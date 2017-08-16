@@ -3,14 +3,14 @@ react-hotkeys
 
 [![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square "Build Badge"
-[build]: https://travis-ci.org/user/repo "Build"
+[build-badge]: https://img.shields.io/travis/jaywcjlove/react-hotkeys/master.png?style=flat-square "Build Badge"
+[build]: https://travis-ci.org/jaywcjlove/react-hotkeys "Build"
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square "Npm Badge"
 [npm]: https://www.npmjs.org/package/npm-package "npm"
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square "Coveralls Badge"
-[coveralls]: https://coveralls.io/github/user/repo "Coveralls"
+[coveralls-badge]: https://img.shields.io/coveralls/jaywcjlove/react-hotkeys/master.png?style=flat-square "Coveralls Badge"
+[coveralls]: https://coveralls.io/github/jaywcjlove/react-hotkeys "Coveralls"
 
 React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts. Uses a fork of [hotkeys.js](https://github.com/jaywcjlove/hotkeys) for keydown detection of special characters. You give it a keymap of shortcuts & it bind it to the mousetrap singleton. The, it'll unbind it when the component unmounts.
 
