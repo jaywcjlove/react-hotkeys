@@ -54,11 +54,9 @@ ReactHotkeys.propTypes = {
   keyName: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
-  isFoce: PropTypes.bool,
 }
 
 ReactHotkeys.defaultProps = {
-  isFoce: false,
   onKeyUp() { },
   onKeyDown() { }
 }
