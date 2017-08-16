@@ -1,3 +1,9 @@
 .DS_Store
-node_modules
-coverage
+/coverage
+/demo/dist
+/es
+/lib
+/node_modules
+/umd
+/__tests__
+npm-debug.log*
