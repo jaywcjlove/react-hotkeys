@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import expect, { toExist } from 'expect'
+import expect from 'expect'
+import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import Example from 'src/'
@@ -86,7 +85,7 @@ describe('Component', () => {
 
   it('displays a welcome message', () => {
     render(<Example />, node, () => {
-      expect(node.innerHTML).toContain('<!-- react-empty: 1 -->')
+      expect(node.innerHTML).toContain('')
     })
   })
 
