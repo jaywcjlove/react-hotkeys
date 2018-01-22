@@ -1,6 +1,6 @@
 {
   "name": "react-hot-keys",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/index.js",
@@ -23,7 +23,8 @@
     "hotkeys-js": "^2.0.8"
   },
   "peerDependencies": {
-    "react": "15.x"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "devDependencies": {
     "nwb": "0.18.x",
