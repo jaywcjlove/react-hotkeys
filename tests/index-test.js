@@ -1,6 +1,6 @@
 import expect from 'expect'
-import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import React, { Component} from 'react'
+import ReactDOM, { render, unmountComponentAtNode } from 'react-dom'
 
 import Example from 'src/'
 
