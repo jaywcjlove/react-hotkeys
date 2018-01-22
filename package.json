@@ -27,7 +27,7 @@
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
-    "nwb": "^0.18.10",
+    "nwb": "^0.21.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
