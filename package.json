@@ -20,14 +20,14 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "hotkeys-js": "^3.3.1"
+    "hotkeys-js": "^3.3.6"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
-    "nwb": "^0.21.5",
+    "nwb": "^0.23.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
