@@ -1,6 +1,6 @@
 {
   "name": "react-hot-keys",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/index.js",
@@ -12,6 +12,7 @@
     "umd"
   ],
   "scripts": {
+    "deploy": "npm run build && gh-pages -d demo/dist",
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
@@ -27,6 +28,7 @@
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
+    "gh-pages": "^1.2.0",
     "nwb": "^0.23.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
