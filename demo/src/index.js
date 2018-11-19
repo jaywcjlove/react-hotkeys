@@ -31,7 +31,7 @@ class Demo extends Component {
       <div>
         {mount && (
           <Example
-            keyName="shift+a,alt+s"
+            keyName="shift+a,alt+s,ctrl+1"
             onKeyDown={this.onKeyDown.bind(this)}
             onKeyUp={this.onKeyUp.bind(this)}
           >
