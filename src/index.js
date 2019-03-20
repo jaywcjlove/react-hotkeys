@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hotkeys from 'hotkeys-js';
 
-Hotkeys.filter = function (event) {
-  const tagName = (event.target || event.srcElement).tagName;
-  Hotkeys.setScope(/^(INPUT|TEXTAREA|SELECT)$/.test(tagName) ? 'input' : 'other');
-  return true;
-};
 export default class ReactHotkeys extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +12,8 @@ export default class ReactHotkeys extends Component {
     this.handle = {}
   }
   componentDidMount() {
+    const { filter } = this.props;
+    Hotkeys.filter = filter;
     Hotkeys.unbind(this.props.keyName);
     Hotkeys(this.props.keyName, this.onKeyDown);
     document.addEventListener('keyup', this.handleKeyUpEvent);
@@ -52,11 +49,16 @@ export default class ReactHotkeys extends Component {
 
 ReactHotkeys.propTypes = {
   keyName: PropTypes.string,
+  filter: PropTypes.func,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
 }
 
 ReactHotkeys.defaultProps = {
+  filter(event) {
+    var tagName = (event.target || event.srcElement).tagName;
+    return !(tagName.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+  },
   onKeyUp() { },
   onKeyDown() { }
 }

@@ -89,6 +89,21 @@ Callback function to be called when user pressed the target buttons
 
 Callback function to be called when user key uped the target buttons
 
+### filter
+
+`INPUT` `SELECT` `TEXTAREA` default does not handle. `filter` to return to the true shortcut keys set to play a role, flase shortcut keys set up failure.
+
+```diff
+<Hotkeys 
+  keyName="shift+a,alt+s" 
++  filter={(event) => {
++    return true;
++  }}
+  onKeyDown={this.onKeyDown.bind(this)}
+  onKeyUp={this.onKeyUp.bind(this)}
+/>
+```
+
 ## License
 
 MIT

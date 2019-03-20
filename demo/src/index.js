@@ -47,6 +47,7 @@ class Demo extends Component {
                 Uses a fork of <b><a href="https://github.com/jaywcjlove/hotkeys">hotkeys.js</a></b> for keydown detection of special characters. You give it a keymap of shortcuts & it bind it to the mousetrap singleton. The, it'll unbind it when the component unmounts.
               </p>
               <div style={{ padding: "20px 0 20px" }} dangerouslySetInnerHTML={{ __html: this.state.output }} />
+              <input type="text" />
             </div>
           </Example>
         )}
