@@ -39,8 +39,8 @@ class Demo extends Component {
               <h1 style={{ padding: "0px 0px 0px" }}>react-hotkeys</h1>
               <div>
                 <a href="https://travis-ci.org/jaywcjlove/react-hotkeys"><img src="https://travis-ci.org/jaywcjlove/react-hotkeys.svg?branch=master" /></a>&nbsp;
-            <a href="https://www.npmjs.org/package/react-hot-keys"><img src="https://img.shields.io/npm/v/react-hot-keys.svg" /></a>&nbsp;
-            <a href="https://coveralls.io/github/jaywcjlove/react-hotkeys"><img src="https://img.shields.io/coveralls/jaywcjlove/react-hotkeys/master.svg" /></a>
+                <a href="https://www.npmjs.org/package/react-hot-keys"><img src="https://img.shields.io/npm/v/react-hot-keys.svg" /></a>&nbsp;
+                <a href="https://coveralls.io/github/jaywcjlove/react-hotkeys"><img src="https://img.shields.io/coveralls/jaywcjlove/react-hotkeys/master.svg" /></a>
               </div>
               <p style={{ padding: "10px 0px 0px" }}>
                 React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.
@@ -51,11 +51,9 @@ class Demo extends Component {
             </div>
           </Example>
         )}
-        <button onClick={() => {
-          this.setState({
-            mount: !this.state.mount,
-          });
-        }}>{mount ? 'Unmount Component' :'Mount Component'}</button>
+        <button onClick={() => this.setState({ mount: !this.state.mount })} >
+          {mount ? 'Unmount Component' :'Mount Component'}
+        </button>
       </div>
     )
   }
