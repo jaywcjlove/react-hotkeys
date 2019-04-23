@@ -21,7 +21,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "hotkeys-js": "^3.4.4"
+    "hotkeys-js": "^3.6.2"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

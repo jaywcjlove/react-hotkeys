@@ -25,13 +25,13 @@ sudo npm i -S react-hot-keys
 
 ### Demo
 
-Preview [demo](https://jaywcjlove.github.io/react-hotkeys/).
+Preview [demo](https://jaywcjlove.github.io/react-hotkeys/). [Codepen example](https://codepen.io/jaywcjlove/pen/bJxbwG).
 
 ```js
-import React, { Component } from 'react';
+import React from 'react';
 import Hotkeys from 'react-hot-keys';
 
-export default class HotkeysDemo extends Component {
+export default class HotkeysDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
