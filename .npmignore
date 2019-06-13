@@ -1,8 +1,0 @@
-.gitignore
-package-lock.json
-tests
-nwb.config.js
-.travis.yml
-CONTRIBUTING.md
-site.sh
-demo
