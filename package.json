@@ -1,6 +1,6 @@
 {
   "name": "react-hot-keys",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.2",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/cjs/index.js",
@@ -8,6 +8,7 @@
   "typings": "typings/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
+    "deploy": "gh-pages -d doc",
     "watch": "npm run watch:types & npm run watch:ts",
     "build": "npm run build:ts && npm run build:types && npm run bundle && npm run bundle -- --bundle=min ",
     "watch:types": "npm run build:types -- --watch",
@@ -53,13 +54,14 @@
     "@types/react-dom": "^16.8.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "kkt": "^4.0.0",
+    "gh-pages": "^2.0.1",
+    "kkt": "^4.1.2",
     "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
-    "tsbb": "^1.0.3"
+    "tsbb": "^1.0.6"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.5",
