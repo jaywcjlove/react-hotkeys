@@ -9,6 +9,7 @@ export interface IReactHotkeysProps {
   filter?: (event: FilterEvent) => boolean;
   onKeyUp?: OnKeyFun;
   onKeyDown?: OnKeyFun;
+  allowRepeat?: boolean;
 }
 
 export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
@@ -54,8 +55,8 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     onKeyUp && onKeyUp(handle.shortcut, e, handle)
   }
   onKeyDown(e: KeyboardEvent, handle: HotkeysEvent) {
-    const { onKeyDown } = this.props;
-    if (this.isKeyDown) return;
+    const { onKeyDown, allowRepeat } = this.props;
+    if (this.isKeyDown && !allowRepeat) return;
     this.isKeyDown = true;
     this.handle = handle;
     onKeyDown && onKeyDown(handle.shortcut, e, handle)
