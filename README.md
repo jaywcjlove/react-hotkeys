@@ -89,6 +89,12 @@ Callback function to be called when user pressed the target buttons
 
 Callback function to be called when user key uped the target buttons
 
+### allowRepeat
+
+> allowRepeat?: boolean;
+
+`allowRepeat` to allow auto repeating key down
+
 ### filter
 
 `INPUT` `SELECT` `TEXTAREA` default does not handle. `filter` to return to the true shortcut keys set to play a role, flase shortcut keys set up failure.
