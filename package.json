@@ -1,18 +1,18 @@
 {
   "name": "react-hot-keys",
-  "version": "2.0.0-beta.2",
+  "version": "2.1.0",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
-  "typings": "typings/index.d.ts",
+  "typings": "lib/cjs/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "deploy": "gh-pages -d doc",
-    "watch": "npm run watch:types & npm run watch:ts",
-    "build": "npm run build:ts && npm run build:types && npm run bundle && npm run bundle -- --bundle=min ",
+    "watch": "npm run watch:types -- --env-name esm:dev --env-name cjs & npm run watch:ts",
+    "build": "npm run build:ts && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run bundle -- --bundle=min ",
     "watch:types": "npm run build:types -- --watch",
-    "build:types": "tsbb types --outDir typings --target ESNEXT",
+    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "watch:ts": "tsbb watch --target react",
     "build:ts": "tsbb build --target react",
     "test": "tsbb test --env=jsdom",
@@ -28,7 +28,6 @@
     "url": "https://github.com/jaywcjlove/react-hotkeys"
   },
   "files": [
-    "typings",
     "dist",
     "src",
     "lib"
@@ -61,7 +60,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
-    "tsbb": "^1.0.6"
+    "tsbb": "^1.1.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.5",
