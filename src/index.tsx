@@ -26,7 +26,7 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     filter: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
-    disabled: PropTypes.boolean,
+    disabled: PropTypes.bool,
   }
   private isKeyDown: boolean = false;
   private handle: HotkeysEvent;
