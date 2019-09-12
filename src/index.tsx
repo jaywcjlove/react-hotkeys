@@ -57,7 +57,7 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     !disabled && onKeyUp && onKeyUp(handle.shortcut, e, handle)
   }
   onKeyDown(e: KeyboardEvent, handle: HotkeysEvent) {
-    const { onKeyDown, allowRepeat } = this.props;
+    const { onKeyDown, allowRepeat, disabled } = this.props;
     if (this.isKeyDown && !allowRepeat) return;
     this.isKeyDown = true;
     this.handle = handle;
