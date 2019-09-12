@@ -14,7 +14,7 @@ describe('<Hotkeys /> Basic test.', () => {
     let tree = component.toTree();
     expect(tree.nodeType).toBe('component');
     expect(typeof (tree.props.filter)).toBe('function');
-    expect(Object.keys(tree.type.propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp']);
+    expect(Object.keys(tree.type.propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled']);
     expect(component.toJSON()).toBeNull();
   });
 
