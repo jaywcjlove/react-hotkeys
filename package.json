@@ -1,6 +1,6 @@
 {
   "name": "react-hot-keys",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/cjs/index.js",

@@ -130,16 +130,16 @@ class ReactHotkeys extends react_1.default.Component {
         document && document.body.removeEventListener('keyup', this.handleKeyUpEvent);
     }
     onKeyUp(e, handle) {
-        const { onKeyUp } = this.props;
-        onKeyUp && onKeyUp(handle.shortcut, e, handle);
+        const { onKeyUp, disabled } = this.props;
+        !disabled && onKeyUp && onKeyUp(handle.shortcut, e, handle);
     }
     onKeyDown(e, handle) {
-        const { onKeyDown, allowRepeat } = this.props;
+        const { onKeyDown, allowRepeat, disabled } = this.props;
         if (this.isKeyDown && !allowRepeat)
             return;
         this.isKeyDown = true;
         this.handle = handle;
-        onKeyDown && onKeyDown(handle.shortcut, e, handle);
+        !disabled && onKeyDown && onKeyDown(handle.shortcut, e, handle);
     }
     handleKeyUpEvent(e) {
         if (!this.isKeyDown)
@@ -166,6 +166,7 @@ ReactHotkeys.propTypes = {
     filter: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
+    disabled: PropTypes.bool,
 };
 exports.default = ReactHotkeys;
 
