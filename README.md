@@ -25,7 +25,10 @@ sudo npm i -S react-hot-keys
 
 ### Demo
 
-Preview [demo](https://jaywcjlove.github.io/react-hotkeys/). [Codepen example](https://codepen.io/jaywcjlove/pen/bJxbwG).
+Preview [demo](https://jaywcjlove.github.io/react-hotkeys/). 
+
+- [Codepen example](https://codepen.io/jaywcjlove/pen/bJxbwG).
+- [CodesandBox Example](https://codesandbox.io/s/hotkeys-116-8rge8)
 
 ```js
 import React from 'react';
