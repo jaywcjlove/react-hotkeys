@@ -1,6 +1,6 @@
 {
   "name": "react-hot-keys",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/cjs/index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "prepare": "npm run build",
     "watch": "npm run types:watch -- --env-name esm:dev --env-name cjs & npm run ts:watch",
-    "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run bundle && npm run bundle -- --bundle=min",
+    "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run bundle && npm run bundle:min",
     "types:build": "tsbb types --sourceRoot src --target ESNEXT",
     "types:watch": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
     "types:esm": "npm run types:build -- --outDir ../lib/esm",
