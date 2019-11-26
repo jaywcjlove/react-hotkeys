@@ -1,5 +1,7 @@
 import React from 'react';
 import { HotkeysEvent } from 'hotkeys-js';
+import { Github } from '@uiw/react-shields';
+import GitHubCorners from '@uiw/react-github-corners';
 import Hotkeys from '../';
 import './App.less';
 
@@ -30,12 +32,19 @@ export default class App extends React.PureComponent<AppProps, AppState> {
   render () {
     return (
       <div className="warpper">
+        <Github user="jaywcjlove" repo="react-hotkeys">
+          <Github.Social type="forks" href="https://github.com/jaywcjlove/react-hotkeys/network/members" />
+          <Github.Social type="stars" href="https://github.com/jaywcjlove/react-hotkeys/stargazers" />
+          <Github.Social type="watchers" href="https://github.com/jaywcjlove/react-hotkeys/watchers" />
+          <Github.Social type="followers" href="https://github.com/jaywcjlove?tab=followers" />
+        </Github>
+        <GitHubCorners href="https://github.com/jaywcjlove/react-hotkeys" target="__blank" />
         <Hotkeys
           keyName="shift+a,alt+s"
           onKeyDown={this.onKeyDown.bind(this)}
           onKeyUp={this.onKeyUp.bind(this)}
         >
-          <div style={{ padding: "50px" }}>
+          <div style={{  }}>
             {(this.state as any).output}
             <hr />
             <kbd>shift</kbd> + <kbd>a</kbd>
