@@ -1,12 +1,12 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import Hotkeys, { FilterEvent, HotkeysEvent } from 'hotkeys-js';
+import Hotkeys, { HotkeysEvent } from 'hotkeys-js';
 
 export type OnKeyFun = (shortcut: string, evn: KeyboardEvent, handle: HotkeysEvent) => void;
 
 export interface IReactHotkeysProps {
   keyName?: string;
-  filter?: (event: FilterEvent) => boolean;
+  filter?: (event: KeyboardEvent) => boolean;
   onKeyUp?: OnKeyFun;
   onKeyDown?: OnKeyFun;
   allowRepeat?: boolean;
@@ -16,7 +16,7 @@ export interface IReactHotkeysProps {
 
 export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
   public static defaultProps: IReactHotkeysProps = {
-    filter(event: FilterEvent) {
+    filter(event: KeyboardEvent) {
       const target = (event.target as HTMLElement) || event.srcElement;
       var tagName = target.tagName;
       return !(target.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');

@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 // import { act } from 'react-dom/test-utils';
-import ReactTestUtils from 'react-dom/test-utils'; // ES6
+// import ReactTestUtils from 'react-dom/test-utils'; // ES6
 import TestRenderer from 'react-test-renderer';
-import { shallow, mount, render } from 'enzyme';
 import Hotkeys from '../src';
 
 
@@ -14,7 +13,7 @@ describe('<Hotkeys /> Basic test.', () => {
     let tree = component.toTree();
     expect(tree.nodeType).toBe('component');
     expect(typeof (tree.props.filter)).toBe('function');
-    expect(Object.keys(tree.type.propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled']);
+    expect(Object.keys(tree.type.propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled', 'splitKey']);
     expect(component.toJSON()).toBeNull();
   });
 

@@ -8,20 +8,20 @@
   "typings": "lib/cjs/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "deploy": "gh-pages -d doc",
-    "watch": "npm run watch:types -- --env-name esm:dev --env-name cjs & npm run watch:ts",
-    "build": "npm run build:ts && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run bundle -- --bundle=min ",
-    "watch:types": "npm run build:types -- --watch",
-    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
-    "watch:ts": "tsbb watch --target react",
-    "build:ts": "tsbb build --target react",
+    "watch": "npm run types:watch -- --env-name esm:dev --env-name cjs & npm run ts:watch",
+    "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run bundle && npm run bundle -- --bundle=min",
+    "types:build": "tsbb types --sourceRoot src --target ESNEXT",
+    "types:watch": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
+    "types:esm": "npm run types:build -- --outDir ../lib/esm",
+    "types:cjs": "npm run types:build -- --outDir ../lib/cjs",
+    "ts:watch": "tsbb watch --env-name esm:dev --env-name cjs --target react",
+    "ts:build": "tsbb build --target react",
+    "bundle": "kkt build --bundle",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini --no-emptyDir",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
-    "bundle": "kkt build --bundle --no-emptyDir",
-    "bundle:min": "kkt build --bundle=min --no-emptyDir",
-    "doc": "npm run doc:build",
-    "doc:dev": "NODE_ENV=development parcel website/index.html --out-dir doc --no-cache",
-    "doc:build": "NODE_ENV=production parcel build website/index.html --out-dir doc --public-url ./ --no-cache --no-source-maps"
+    "doc": "ENTRYDIR=website kkt build",
+    "doc:dev": "ENTRYDIR=website kkt start"
   },
   "repository": {
     "type": "git",
@@ -48,24 +48,32 @@
     "react-dom": ">=16.7.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.7",
-    "@types/react": "^16.8.17",
-    "@types/react-dom": "^16.8.4",
+    "@kkt/loader-less": "^1.0.3",
+    "@types/classnames": "^2.2.9",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
     "classnames": "^2.2.6",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "gh-pages": "^2.0.1",
-    "kkt": "^4.1.2",
-    "less": "^3.9.0",
-    "parcel-bundler": "^1.12.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-test-renderer": "^16.8.6",
-    "tsbb": "^1.1.2"
+    "kkt": "^5.0.0-alpha.12",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
+    "tsbb": "^1.3.6"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.5",
-    "hotkeys-js": "^3.7.2",
+    "hotkeys-js": "^3.7.3",
     "prop-types": "^15.7.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
