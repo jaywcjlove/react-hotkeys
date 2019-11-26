@@ -1,21 +1,27 @@
 import React from 'react';
+import { HotkeysEvent } from 'hotkeys-js';
 import Hotkeys from '../';
 import './App.less';
 
-export default class App extends React.PureComponent {
-  constructor(props) {
+export interface AppProps {}
+export interface AppState {
+  output?: string;
+}
+
+export default class App extends React.PureComponent<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props);
     this.state = {
       output: 'Hello, I am a component that listens to keydown and keyup of a',
     }
   }
-  onKeyUp(keyName, e, handle) {
+  onKeyUp(keyName: string, e: KeyboardEvent, handle: HotkeysEvent) {
     console.log("test:onKeyUp", e, handle)
     this.setState({
       output: `onKeyUp ${keyName}`,
     });
   }
-  onKeyDown(keyName, e, handle) {
+  onKeyDown(keyName: string, e: KeyboardEvent, handle: HotkeysEvent) {
     console.log("test:onKeyDown", keyName, e, handle)
     this.setState({
       output: `onKeyDown ${keyName}`,
@@ -30,7 +36,7 @@ export default class App extends React.PureComponent {
           onKeyUp={this.onKeyUp.bind(this)}
         >
           <div style={{ padding: "50px" }}>
-            {this.state.output}
+            {(this.state as any).output}
             <hr />
             <kbd>shift</kbd> + <kbd>a</kbd>
             <hr />

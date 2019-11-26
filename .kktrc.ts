@@ -1,7 +1,7 @@
 import path from 'path';
 
 export const loaderOneOf = [
-  [require.resolve('@kkt/loader-less'), {} ],
+  require.resolve('@kkt/loader-less')
 ];
 
 /**
@@ -44,6 +44,8 @@ export default (conf, options) => {
     } else {
       conf.optimization.minimize = false;
     }
+  } else {
+    conf.output = { ...conf.output, publicPath: '.' }
   }
   return conf
 }
