@@ -11,6 +11,7 @@ export interface IReactHotkeysProps {
   onKeyDown?: OnKeyFun;
   allowRepeat?: boolean;
   disabled?: boolean;
+  splitKey?: string;
 }
 
 export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
@@ -27,6 +28,7 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     disabled: PropTypes.bool,
+    splitKey: PropTypes.string
   }
   private isKeyDown: boolean = false;
   private handle: HotkeysEvent;
@@ -38,12 +40,12 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     this.handle = {} as HotkeysEvent;
   }
   componentDidMount() {
-    const { filter } = this.props;
+    const { filter, splitKey } = this.props;
     if (filter) {
       Hotkeys.filter = filter;
     }
     Hotkeys.unbind(this.props.keyName as string);
-    Hotkeys(this.props.keyName as string, this.onKeyDown);
+    Hotkeys(this.props.keyName as string, { splitKey }, this.onKeyDown);
     document && document.body.addEventListener('keyup', this.handleKeyUpEvent);
   }
   componentWillUnmount() {
