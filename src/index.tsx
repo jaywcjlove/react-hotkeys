@@ -19,7 +19,7 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     filter(event: KeyboardEvent) {
       const target = (event.target as HTMLElement) || event.srcElement;
       var tagName = target.tagName;
-      return !(target.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+      return !(target.isContentEditable || tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA');
     },
   }
   static propTypes = {
