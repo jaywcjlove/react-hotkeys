@@ -10,8 +10,9 @@ export const loaderOneOf = [
  */
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
+    const isMini = options.yargsArgs && options.yargsArgs.mini;
     conf.devtool = false;
-    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|GenerateSW)/;
+    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|IgnorePlugin|GenerateSW)/;
     conf.plugins = conf.plugins.map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
@@ -20,6 +21,13 @@ export default (conf, options) => {
     }).filter(Boolean);
     conf.entry = './src/index.tsx';
     conf.output = {
+      path: path.join(process.cwd(), 'dist'),
+      filename: 'react-hotkeys.js',
+      library: 'ReactHotkeys',
+      libraryTarget: 'umd',
+    }
+    conf.output = {
+      futureEmitAssets: true,
       path: path.join(process.cwd(), 'dist'),
       filename: 'react-hotkeys.js',
       library: 'ReactHotkeys',
@@ -42,6 +50,14 @@ export default (conf, options) => {
     if (options.yargsArgs && options.yargsArgs.mini) {
       conf.output.filename = 'react-hotkeys.min.js';
     } else {
+      conf.optimization.minimize = false;
+    }
+    conf.optimization = {
+      minimize: options.isEnvProduction,
+      minimizer: [],
+    };
+
+    if (!isMini) {
       conf.optimization.minimize = false;
     }
   } else {
