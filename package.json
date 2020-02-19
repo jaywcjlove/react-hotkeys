@@ -59,9 +59,7 @@
     ]
   },
   "peerDependencies": {
-    "react": ">=16.7.0",
-    "react-dom": ">=16.7.0",
-    "hotkeys-js": ">=3.7.3"
+    "react": ">=16.7.0"
   },
   "devDependencies": {
     "@kkt/loader-less": "^5.4.3",
