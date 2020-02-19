@@ -6,6 +6,7 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "typings": "lib/cjs/index.d.ts",
+  "homepage": "https://jaywcjlove.github.io/react-hotkeys/",
   "scripts": {
     "prepare": "npm run build",
     "watch": "npm run types:watch -- --env-name esm:dev --env-name cjs & npm run ts:watch",
@@ -62,14 +63,14 @@
     "react": ">=16.7.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "^5.4.3",
+    "@kkt/loader-less": "5.5.1",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "@uiw/react-github-corners": "^1.1.3",
     "@uiw/react-shields": "^1.1.0",
     "classnames": "^2.2.6",
-    "kkt": "^5.4.3",
+    "kkt": "5.5.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
