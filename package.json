@@ -50,15 +50,6 @@
     "keypress"
   ],
   "license": "MIT",
-  "jest": {
-    "testMatch": [
-      "<rootDir>/**/__tests__/**/*.{ts,tsx}",
-      "<rootDir>/**/(*.)(spec|test).{ts,tsx}"
-    ],
-    "modulePathIgnorePatterns": [
-      "[/\\\\](node_modules|lib)[/\\\\].+\\.(js|jsx|ts|tsx)$"
-    ]
-  },
   "peerDependencies": {
     "react": ">=16.7.0"
   },
