@@ -54,7 +54,7 @@
     "react": ">=16.7.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.5.1",
+    "@kkt/loader-less": "5.5.5",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
