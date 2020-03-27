@@ -1254,7 +1254,11 @@ module.exports = checkPropTypes;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ src_ReactHotkeys; });
 
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(3);
@@ -1265,10 +1269,10 @@ var prop_types = __webpack_require__(0);
 
 // CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
 /*!
- * hotkeys-js v3.7.3
+ * hotkeys-js v3.7.5
  * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
  * 
- * Copyright (c) 2019 kenny wong <wowohoo@qq.com>
+ * Copyright (c) 2020 kenny wong <wowohoo@qq.com>
  * http://jaywcjlove.github.io/hotkeys
  * 
  * Licensed under the MIT license.
@@ -1659,6 +1663,26 @@ function dispatch(event) {
     if (Object.prototype.hasOwnProperty.call(_mods, e)) {
       _mods[e] = event[modifierMap[e]];
     }
+  }
+  /**
+   * https://github.com/jaywcjlove/hotkeys/pull/129
+   * This solves the issue in Firefox on Windows where hotkeys corresponding to special characters would not trigger.
+   * An example of this is ctrl+alt+m on a Swedish keyboard which is used to type μ.
+   * Browser support: https://caniuse.com/#feat=keyboardevent-getmodifierstate
+   */
+
+
+  if (event.getModifierState && !(event.altKey && !event.ctrlKey) && event.getModifierState('AltGraph')) {
+    if (_downKeys.indexOf(17) === -1) {
+      _downKeys.push(17);
+    }
+
+    if (_downKeys.indexOf(18) === -1) {
+      _downKeys.push(18);
+    }
+
+    _mods[17] = true;
+    _mods[18] = true;
   } // 获取范围 默认为 `all`
 
 
@@ -1806,8 +1830,7 @@ if (typeof window !== 'undefined') {
 
 /* harmony default export */ var hotkeys_esm = (hotkeys);
 // CONCATENATED MODULE: ./src/index.tsx
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return src_ReactHotkeys; });
-function src_typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){src_typeof=function _typeof(obj){return typeof obj;};}else{src_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return src_typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(src_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var src_ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_possibleConstructorReturn(this,_getPrototypeOf(ReactHotkeys).call(this,props));_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys_esm.filter=filter;}hotkeys_esm.unbind(this.props.keyName);hotkeys_esm(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys_esm.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);src_ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};src_ReactHotkeys.propTypes={keyName:prop_types["string"],filter:prop_types["func"],onKeyDown:prop_types["func"],onKeyUp:prop_types["func"],disabled:prop_types["bool"],splitKey:prop_types["string"]};
+function src_typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){src_typeof=function _typeof(obj){return typeof obj;};}else{src_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return src_typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _createSuper(Derived){return function(){var Super=_getPrototypeOf(Derived),result;if(_isNativeReflectConstruct()){var NewTarget=_getPrototypeOf(this).constructor;result=Reflect.construct(Super,arguments,NewTarget);}else{result=Super.apply(this,arguments);}return _possibleConstructorReturn(this,result);};}function _possibleConstructorReturn(self,call){if(call&&(src_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct(){if(typeof Reflect==="undefined"||!Reflect.construct)return false;if(Reflect.construct.sham)return false;if(typeof Proxy==="function")return true;try{Date.prototype.toString.call(Reflect.construct(Date,[],function(){}));return true;}catch(e){return false;}}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var src_ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);var _super=_createSuper(ReactHotkeys);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_super.call(this,props);_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys_esm.filter=filter;}hotkeys_esm.unbind(this.props.keyName);hotkeys_esm(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys_esm.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);src_ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};src_ReactHotkeys.propTypes={keyName:prop_types["string"],filter:prop_types["func"],onKeyDown:prop_types["func"],onKeyUp:prop_types["func"],disabled:prop_types["bool"],splitKey:prop_types["string"]};
 
 /***/ })
 /******/ ]);
