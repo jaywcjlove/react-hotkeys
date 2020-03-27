@@ -62,9 +62,9 @@
     "@uiw/react-shields": "1.1.0",
     "classnames": "2.2.6",
     "kkt": "5.6.0",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-test-renderer": "16.12.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-test-renderer": "16.13.1",
     "tsbb": "1.5.2"
   },
   "dependencies": {
