@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import { OptionConf } from 'kkt/lib/config/webpack.config';
+import { OptionConf } from 'kkt';
 
 export const loaderOneOf = [
   require.resolve('@kkt/loader-less')
