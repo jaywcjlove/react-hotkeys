@@ -25,3 +25,37 @@ kbd {
   padding: 3px 5px;
   vertical-align: middle;
 }
+
+.active kbd {
+  background: #0a65bf;
+  color: #fff;
+  border-color: transparent;
+  box-shadow: inset 0 -1px 0 transparent;
+}
+
+.shortcut-info {
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  > div {
+    display: inline-block;
+    & + div {
+      // border-left: red 1px solid;
+      margin-left: 21px;
+      padding-left: 21px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.info {
+  position: absolute;
+  font-size: 12px;
+}
+
+.App-markdown {
+  padding-top: 36px;
+}

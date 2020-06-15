@@ -1,9 +1,14 @@
 import path from 'path';
 import webpack from 'webpack';
-import { OptionConf } from 'kkt';
+import { OptionConf, ModuleScopePluginOpts } from 'kkt';
 
 export const loaderOneOf = [
-  require.resolve('@kkt/loader-less')
+  require.resolve('@kkt/loader-less'),
+  require.resolve('@kkt/loader-raw')
+];
+
+export const moduleScopePluginOpts: ModuleScopePluginOpts = [
+  path.resolve(process.cwd(), 'README.md')
 ];
 
 interface Options extends OptionConf {

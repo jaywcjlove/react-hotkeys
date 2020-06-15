@@ -12,6 +12,8 @@ react-hotkeys
 [coveralls-badge]: https://img.shields.io/coveralls/jaywcjlove/react-hotkeys/master.svg "Coveralls Badge"
 [coveralls]: https://coveralls.io/github/jaywcjlove/react-hotkeys "Coveralls"
 
+<!--dividing-->
+
 React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts. Uses a fork of [hotkeys.js](https://github.com/jaywcjlove/hotkeys) for keydown detection of special characters. You give it a keymap of shortcuts & it bind it to the mousetrap singleton. The, it'll unbind it when the component unmounts.
 
 > [react-hotkeys-hook](https://github.com/JohannesKlauss/react-hotkeys-hook) - React hook for using keyboard shortcuts in components. Make sure that you have at least version 16.8 of react and react-dom installed, or otherwise hooks won't work for you.
