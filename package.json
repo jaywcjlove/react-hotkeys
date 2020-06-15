@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "hotkeys-js": "^3.7.5",
+    "hotkeys-js": "^3.8.1",
     "prop-types": "^15.7.2"
   },
   "browserslist": {
