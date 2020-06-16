@@ -1,8 +1,8 @@
 name: GitHub Actions Build and Deploy react-hot-keys
 on:
   push:
-    tags:
-      - v2.*
+    branches:
+      - master
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
