@@ -38,7 +38,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     });
   }
   render () {
-    const {shortcut} = this.state;
+    const {shortcut, output} = this.state;
     return (
       <div className="warpper">
         <h1>React Hotkeys</h1>
@@ -69,9 +69,11 @@ export default class App extends React.PureComponent<AppProps, AppState> {
                 <kbd>shift</kbd> + <kbd>/</kbd>
               </div>
             </div>
-            <div className="info">
-              {this.state.output}
-            </div>
+            {output && (
+              <div className="info">
+                {output}
+              </div>
+            )}
           </div>
         </Hotkeys>
         <MarkdownPreview className="App-markdown" source={MDStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
