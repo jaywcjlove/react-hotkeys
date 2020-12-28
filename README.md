@@ -1,7 +1,8 @@
 react-hotkeys
 ---
 
-[![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
+[![Build & Deploy](https://github.com/jaywcjlove/react-hotkeys/workflows/Build%20&%20Deploy/badge.svg)](https://github.com/jaywcjlove/react-hotkeys/actions)
+[![Travis][build-badge]][build] [![npm package][npm-badge]]() [![Coveralls][coveralls-badge]][coveralls]
 
 [build-badge]: https://travis-ci.org/jaywcjlove/react-hotkeys.svg?branch=master "Build Badge"
 [build]: https://travis-ci.org/jaywcjlove/react-hotkeys "Build"
