@@ -1,4 +1,4 @@
-name: GitHub Actions Build and Deploy react-hot-keys
+name: Build & Deploy
 on:
   push:
     branches:
