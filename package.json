@@ -18,18 +18,21 @@
     "ts:watch": "tsbb watch --env-name esm:dev --env-name cjs --target react",
     "ts:build": "tsbb build --target react",
     "bundle": "kkt build --bundle",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini --no-emptyDir",
+    "bundle:min": "kkt build --bundle --mini",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
-    "doc": "ENTRYDIR=website kkt build",
-    "doc:dev": "ENTRYDIR=website kkt start"
+    "doc": "kkt build --app-src ./website",
+    "start": "kkt start --app-src ./website"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jaywcjlove/react-hotkeys"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "files": [
     "dist",
@@ -51,26 +54,28 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@babel/runtime": ">=7.8.0",
     "react": ">=16.7.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.8.0",
-    "@kkt/loader-raw": "5.8.0",
-    "@types/classnames": "2.2.10",
+    "@kkt/less-modules": "6.0.11",
+    "@kkt/raw-modules": "6.0.11",
+    "@kkt/react-library": "6.0.11",
+    "@kkt/scope-plugin-options": "6.0.11",
+    "@types/classnames": "2.2.11",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.5",
     "@uiw/react-github-corners": "1.1.3",
     "@uiw/react-markdown-preview": "1.0.7",
     "@uiw/react-shields": "1.1.0",
     "classnames": "2.2.6",
-    "kkt": "5.8.0",
+    "kkt": "6.0.11",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-test-renderer": "16.13.1",
-    "tsbb": "1.7.4"
+    "tsbb": "1.7.9"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
     "hotkeys-js": "^3.8.1",
     "prop-types": "^15.7.2"
   },

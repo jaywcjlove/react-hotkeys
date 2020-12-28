@@ -15,10 +15,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "declaration": true,
-    "jsx": "react"
+    "jsx": "react",
+    "allowJs": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
-    "website",
-    "src"
+    "website"
   ]
 }

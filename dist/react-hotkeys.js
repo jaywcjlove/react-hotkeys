@@ -1,3 +1,9 @@
+/*!
+ * react-hotkeys v2.6.0 
+ * React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.
+ * Copyright (c) 2020 kenny wang <wowohoo@qq.com>
+ * Licensed under the MIT license. 
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"));
@@ -7,7 +13,7 @@
 		exports["ReactHotkeys"] = factory(require("react"));
 	else
 		root["ReactHotkeys"] = factory(root["React"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,122 +93,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-if (false) { var throwOnDirectAccess, ReactIs; } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(2)();
-}
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-var ReactPropTypesSecret = __webpack_require__(3);
-
-function emptyFunction() {}
-
-function emptyFunctionWithReset() {}
-
-emptyFunctionWithReset.resetWarningCache = emptyFunction;
-
-module.exports = function () {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret) {
-      // It is still safe when called from React.
-      return;
-    }
-
-    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-    err.name = 'Invariant Violation';
-    throw err;
-  }
-
-  ;
-  shim.isRequired = shim;
-
-  function getShim() {
-    return shim;
-  }
-
-  ; // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    elementType: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim,
-    checkPropTypes: emptyFunctionWithReset,
-    resetWarningCache: emptyFunction
-  };
-  ReactPropTypes.PropTypes = ReactPropTypes;
-  return ReactPropTypes;
-};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-module.exports = ReactPropTypesSecret;
-
-/***/ }),
-/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -212,12 +117,130 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ src_ReactHotkeys; });
 
-// EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
-var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(1);
-var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/createClass.js
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
 
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(0);
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/inherits.js
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/typeof.js
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
+
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/createSuper.js
+
+
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+// EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
+var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
+var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
 
 // CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
 /*!
@@ -776,7 +799,7 @@ if (typeof window !== 'undefined') {
 
 /* harmony default export */ var hotkeys_esm = (hotkeys);
 // CONCATENATED MODULE: ./src/index.tsx
-function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}function _createSuper(Derived){function isNativeReflectConstruct(){if(typeof Reflect==="undefined"||!Reflect.construct)return false;if(Reflect.construct.sham)return false;if(typeof Proxy==="function")return true;try{Date.prototype.toString.call(Reflect.construct(Date,[],function(){}));return true;}catch(e){return false;}}return function(){var Super=_getPrototypeOf(Derived),result;if(isNativeReflectConstruct()){var NewTarget=_getPrototypeOf(this).constructor;result=Reflect.construct(Super,arguments,NewTarget);}else{result=Super.apply(this,arguments);}return _possibleConstructorReturn(this,result);};}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}var src_ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);var _super=_createSuper(ReactHotkeys);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_super.call(this,props);_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys_esm.filter=filter;}hotkeys_esm.unbind(this.props.keyName);hotkeys_esm(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys_esm.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);src_ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};src_ReactHotkeys.propTypes={keyName:prop_types["string"],filter:prop_types["func"],onKeyDown:prop_types["func"],onKeyUp:prop_types["func"],disabled:prop_types["bool"],splitKey:prop_types["string"]};
+var src_ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);var _super=_createSuper(ReactHotkeys);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_super.call(this,props);_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys_esm.filter=filter;}hotkeys_esm.unbind(this.props.keyName);hotkeys_esm(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys_esm.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);src_ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};
 
 /***/ })
 /******/ ]);
