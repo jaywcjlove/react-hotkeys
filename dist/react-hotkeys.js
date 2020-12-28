@@ -1,5 +1,5 @@
 /*!
- * react-hotkeys v2.6.1 
+ * react-hotkeys v2.6.2 
  * React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.
  * Copyright (c) 2020 kenny wang <wowohoo@qq.com>
  * Licensed under the MIT license. 
