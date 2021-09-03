@@ -51,7 +51,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
             <img src="https://img.shields.io/npm/dm/react-hot-keys.svg?style=flat" alt="NPM Downloads" />
           </a>
         </Github>
-        <GitHubCorners href="https://github.com/jaywcjlove/react-hotkeys" target="__blank" />
+        <GitHubCorners href="https://github.com/jaywcjlove/react-hotkeys" target="__blank" fixed zIndex={9999} />
         <Hotkeys
           keyName="shift+a,alt+s,shift+/"
           onKeyDown={this.onKeyDown.bind(this)}
