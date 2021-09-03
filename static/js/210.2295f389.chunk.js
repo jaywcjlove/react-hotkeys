@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-hot-keys"]=this["webpackJsonpreact-hot-keys"]||[]).push([[210],{253:function(n,s){Prism.languages.jsonp=Prism.languages.extend("json",{punctuation:/[{}[\]();,.]/}),Prism.languages.insertBefore("jsonp","punctuation",{function:/[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/})}}]);
-//# sourceMappingURL=210.2295f389.chunk.js.map

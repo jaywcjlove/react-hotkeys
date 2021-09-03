@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-hot-keys"]=this["webpackJsonpreact-hot-keys"]||[]).push([[49],{92:function(e,t){Prism.languages.brainfuck={pointer:{pattern:/<|>/,alias:"keyword"},increment:{pattern:/\+/,alias:"inserted"},decrement:{pattern:/-/,alias:"deleted"},branching:{pattern:/\[|\]/,alias:"important"},operator:/[.,]/,comment:/\S+/}}}]);
-//# sourceMappingURL=49.65b42a4b.chunk.js.map
