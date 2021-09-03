@@ -47,6 +47,9 @@ export default class App extends React.PureComponent<AppProps, AppState> {
           <Github.Social type="stars" href="https://github.com/jaywcjlove/react-hotkeys/stargazers" />
           <Github.Social type="watchers" href="https://github.com/jaywcjlove/react-hotkeys/watchers" />
           <Github.Social type="followers" href="https://github.com/jaywcjlove?tab=followers" />
+          <a href="https://www.npmjs.com/package/react-hot-keys" target="__blank">
+            <img src="https://img.shields.io/npm/dm/react-hot-keys.svg?style=flat" alt="NPM Downloads" />
+          </a>
         </Github>
         <GitHubCorners href="https://github.com/jaywcjlove/react-hotkeys" target="__blank" />
         <Hotkeys
