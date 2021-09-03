@@ -15,7 +15,7 @@ React component to listen to keydown and keyup keyboard events, defining and  di
 ### Install
 
 ```sh
-sudo npm i -S react-hot-keys
+npm i -S react-hot-keys
 ```
 
 ### Demo
