@@ -30,8 +30,8 @@ export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
     disabled: PropTypes.bool,
     splitKey: PropTypes.string
   }
-  private isKeyDown: boolean = false;
-  private handle: HotkeysEvent;
+  public isKeyDown: boolean = false;
+  public handle: HotkeysEvent;
   constructor(props: IReactHotkeysProps) {
     super(props);
     this.onKeyDown = this.onKeyDown.bind(this);

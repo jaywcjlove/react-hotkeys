@@ -30,8 +30,14 @@
   "files": [
     "dist",
     "src",
-    "lib"
+    "esm",
+    "cjs"
   ],
+  "jest": {
+    "testMatch": [
+      "<rootDir>/test/*.{ts,tsx}"
+    ]
+  },
   "keywords": [
     "react-hot-keys",
     "react-hotkey",
@@ -57,8 +63,10 @@
     "@kkt/react-library": "6.11.0",
     "@kkt/scope-plugin-options": "6.11.0",
     "@types/classnames": "2.3.1",
+    "@types/jest": "27.0.1",
     "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
+    "@types/react-test-renderer": "17.0.1",
     "@uiw/react-github-corners": "1.5.1",
     "@uiw/react-markdown-preview": "3.3.0",
     "@uiw/react-shields": "1.1.1",
@@ -67,6 +75,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
+    "jest": "27.1.0",
     "tsbb": "3.0.4"
   },
   "dependencies": {

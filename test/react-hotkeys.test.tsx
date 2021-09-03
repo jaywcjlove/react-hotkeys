@@ -1,7 +1,6 @@
-import React from 'react';
+/* eslint-disable jest/no-conditional-expect */
+import React from 'react'
 import ReactDOM from 'react-dom'
-// import { act } from 'react-dom/test-utils';
-// import ReactTestUtils from 'react-dom/test-utils'; // ES6
 import TestRenderer from 'react-test-renderer';
 import Hotkeys from '../src';
 
@@ -11,10 +10,12 @@ describe('<Hotkeys /> Basic test.', () => {
   it('Default test', () => {
     const component = TestRenderer.create(<Hotkeys />);
     let tree = component.toTree();
-    expect(tree.nodeType).toBe('component');
-    expect(typeof (tree.props.filter)).toBe('function');
-    expect(Object.keys(tree.type.propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled', 'splitKey']);
-    expect(component.toJSON()).toBeNull();
+    if (tree && !Array.isArray(tree)) {
+      expect(tree.nodeType).toBe('component');
+      expect(typeof (tree.props.filter)).toBe('function');
+      expect(Object.keys((tree.type as any).propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled', 'splitKey']);
+      expect(component.toJSON()).toBeNull();
+    }
   });
 
   it('Test keyName Props', () => {
@@ -22,10 +23,14 @@ describe('<Hotkeys /> Basic test.', () => {
       <Hotkeys keyName="shift+a,alt+s,del"><div>Hotkeys</div></Hotkeys>
     );
     let jsond = component.toJSON();
-    expect(jsond.type).toBe('div');
-    expect(jsond.children).toEqual(['Hotkeys']);
+    if (jsond && !Array.isArray(jsond)) {
+      expect(jsond.type).toBe('div');
+      expect(jsond.children).toEqual(['Hotkeys']);
+    }
     const tree = component.toTree();
-    expect(tree.props.keyName).toBe('shift+a,alt+s,del');
+    if (tree && typeof tree === 'object') {
+      expect(tree.props.keyName).toBe('shift+a,alt+s,del');
+    }
   });
 
   it('Component testing', () => {
@@ -33,8 +38,10 @@ describe('<Hotkeys /> Basic test.', () => {
       <Hotkeys keyName="shift+a,alt+s,del"><div>Hotkeys</div></Hotkeys>
     );
     let tree = component.toJSON();
-    expect(tree.type).toBe('div');
-    expect(tree.children).toEqual(["Hotkeys"]);
+    if (tree && !Array.isArray(tree)) {
+      expect(tree.type).toBe('div');
+      expect(tree.children).toEqual(["Hotkeys"]);
+    }
   });
 
 });
@@ -42,7 +49,7 @@ describe('<Hotkeys /> Basic test.', () => {
 
 describe('<Hotkeys /> Event simulation test.', () => {
 
-  let ref = null;
+  let ref: Hotkeys | null;
   TestRenderer.create(
     <Hotkeys
       ref={(r) => { ref = r }}
@@ -59,20 +66,28 @@ describe('<Hotkeys /> Event simulation test.', () => {
   );
 
   it('Event test', () => {
-    expect(typeof ref.props.onKeyDown).toBe('function');
-    expect(typeof ref.props.onKeyUp).toBe('function');
+    if (ref) {
+      expect(typeof ref.props.onKeyDown).toBe('function');
+      expect(typeof ref.props.onKeyUp).toBe('function');
+    }
   });
 
   it('keyName test', () => {
-    expect(ref.props.keyName).toBe('shift+a,alt+s,del');
+    if (ref) {
+      expect(ref.props.keyName).toBe('shift+a,alt+s,del');
+    }
   });
 
   it('isKeyDown test', () => {
-    expect(ref.isKeyDown).toEqual(false)
+    if (ref) {
+      expect(ref.isKeyDown).toEqual(false)
+    }
   });
 
   it('handle equal', () => {
-    expect(ref.handle).toEqual({})
+    if (ref) {
+      expect(ref.handle).toEqual({})
+    }
   });
 
 })
@@ -80,15 +95,17 @@ describe('<Hotkeys /> Event simulation test.', () => {
 
 describe('<Hotkeys /> Event 222.', () => {
 
-  let container;
+  let container: HTMLDivElement | null;
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
   });
 
   afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
+    if (container) {
+      document.body.removeChild(container);
+      container = null;
+    }
   });
 
 
