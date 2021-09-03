@@ -2,6 +2,8 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 lib
+cjs
+esm
 doc
 build
 typings

@@ -1,8 +1,7 @@
 {
   "extends": "../tsconfig",
-  "include": ["../src"],
   "compilerOptions": {
-    "emitDeclarationOnly": true,
+		"outDir": "../cjs",
     "noEmit": false
   }
 }

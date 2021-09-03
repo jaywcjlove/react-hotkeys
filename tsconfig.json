@@ -1,27 +1,35 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "noEmit": true
+    "declaration": true,
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "types": [
+      "jest",
+      "node"
+    ],
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "website"
+    "website",
+    "src",
+    ".kktrc.ts",
+    "test"
   ]
 }
