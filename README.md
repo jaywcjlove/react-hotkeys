@@ -22,7 +22,7 @@ npm i -S react-hot-keys
 
 Preview [demo](https://jaywcjlove.github.io/react-hotkeys/). 
 
-- [Codepen example](https://codepen.io/jaywcjlove/pen/bJxbwG).
+- [Codepen example](https://codepen.io/jaywcjlove/pen/bJxbwG?editors=0010).
 - [CodesandBox Example](https://codesandbox.io/s/hotkeys-116-8rge8)
 
 ```js
