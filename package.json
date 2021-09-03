@@ -69,7 +69,7 @@
     "@uiw/react-markdown-preview": "1.0.9",
     "@uiw/react-shields": "1.1.0",
     "classnames": "2.2.6",
-    "kkt": "6.0.11",
+    "kkt": "6.11.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
