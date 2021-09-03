@@ -27,6 +27,9 @@ jobs:
     - run: npm run coverage
     - run: npm run doc
 
+    - run: npm install @jsdevtools/npm-publish -g
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
+
     - name: Build and Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
