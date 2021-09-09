@@ -76,7 +76,7 @@
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
     "jest": "27.1.0",
-    "tsbb": "3.0.4"
+    "tsbb": "3.1.5"
   },
   "dependencies": {
     "hotkeys-js": "^3.8.1",
