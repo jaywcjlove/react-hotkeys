@@ -34,6 +34,10 @@
     "cjs"
   ],
   "jest": {
+    "coverageReporters": [
+      "lcov",
+      "json-summary"
+    ],
     "testMatch": [
       "<rootDir>/test/*.{ts,tsx}"
     ]

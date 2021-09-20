@@ -3,7 +3,7 @@ react-hotkeys
 
 [![NPM Downloads](https://img.shields.io/npm/dm/react-hot-keys.svg?style=flat)](https://www.npmjs.com/package/react-hot-keys)
 [![Build & Deploy](https://github.com/jaywcjlove/react-hotkeys/workflows/Build%20&%20Deploy/badge.svg)](https://github.com/jaywcjlove/react-hotkeys/actions)
-[![npm package](https://img.shields.io/npm/v/react-hot-keys.svg)](https://www.npmjs.org/package/react-hot-keys) [![Coveralls](https://img.shields.io/coveralls/jaywcjlove/react-hotkeys/master.svg)](https://coveralls.io/github/jaywcjlove/react-hotkeys)
+[![npm package](https://img.shields.io/npm/v/react-hot-keys.svg)](https://www.npmjs.org/package/react-hot-keys) [![Coveralls](https://jaywcjlove.github.io/react-hotkeys/coverage/badges.svg)](https://jaywcjlove.github.io/react-hotkeys/coverage/lcov-report/)
 
 <!--dividing-->
 
