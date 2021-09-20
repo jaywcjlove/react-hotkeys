@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/react-hotkeys/static/css/main.7b22e3a9.chunk.css",
-    "main.js": "/react-hotkeys/static/js/main.2c293cc2.chunk.js",
-    "main.js.map": "/react-hotkeys/static/js/main.2c293cc2.chunk.js.map",
-    "runtime-main.js": "/react-hotkeys/static/js/runtime-main.31de96f1.js",
-    "runtime-main.js.map": "/react-hotkeys/static/js/runtime-main.31de96f1.js.map",
+    "main.js": "/react-hotkeys/static/js/main.799471b5.chunk.js",
+    "main.js.map": "/react-hotkeys/static/js/main.799471b5.chunk.js.map",
+    "runtime-main.js": "/react-hotkeys/static/js/runtime-main.342b3c23.js",
+    "runtime-main.js.map": "/react-hotkeys/static/js/runtime-main.342b3c23.js.map",
     "static/css/2.d81340d2.chunk.css": "/react-hotkeys/static/css/2.d81340d2.chunk.css",
-    "static/js/2.7d4d2016.chunk.js": "/react-hotkeys/static/js/2.7d4d2016.chunk.js",
-    "static/js/2.7d4d2016.chunk.js.map": "/react-hotkeys/static/js/2.7d4d2016.chunk.js.map",
+    "static/js/2.edba3967.chunk.js": "/react-hotkeys/static/js/2.edba3967.chunk.js",
+    "static/js/2.edba3967.chunk.js.map": "/react-hotkeys/static/js/2.edba3967.chunk.js.map",
     "index.html": "/react-hotkeys/index.html",
     "static/css/2.d81340d2.chunk.css.map": "/react-hotkeys/static/css/2.d81340d2.chunk.css.map",
     "static/css/main.7b22e3a9.chunk.css.map": "/react-hotkeys/static/css/main.7b22e3a9.chunk.css.map",
-    "static/js/2.7d4d2016.chunk.js.LICENSE.txt": "/react-hotkeys/static/js/2.7d4d2016.chunk.js.LICENSE.txt"
+    "static/js/2.edba3967.chunk.js.LICENSE.txt": "/react-hotkeys/static/js/2.edba3967.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.31de96f1.js",
+    "static/js/runtime-main.342b3c23.js",
     "static/css/2.d81340d2.chunk.css",
-    "static/js/2.7d4d2016.chunk.js",
+    "static/js/2.edba3967.chunk.js",
     "static/css/main.7b22e3a9.chunk.css",
-    "static/js/main.2c293cc2.chunk.js"
+    "static/js/main.799471b5.chunk.js"
   ]
 }
