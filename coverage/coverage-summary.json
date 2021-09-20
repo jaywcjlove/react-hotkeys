@@ -1,0 +1,3 @@
+{"total": {"lines":{"total":34,"covered":15,"skipped":0,"pct":44.12},"statements":{"total":37,"covered":15,"skipped":0,"pct":40.54},"functions":{"total":8,"covered":3,"skipped":0,"pct":37.5},"branches":{"total":30,"covered":5,"skipped":0,"pct":16.67}}
+,"/home/runner/work/react-hotkeys/react-hotkeys/src/index.tsx": {"lines":{"total":34,"covered":15,"skipped":0,"pct":44.12},"functions":{"total":8,"covered":3,"skipped":0,"pct":37.5},"statements":{"total":37,"covered":15,"skipped":0,"pct":40.54},"branches":{"total":30,"covered":5,"skipped":0,"pct":16.67}}
+}
