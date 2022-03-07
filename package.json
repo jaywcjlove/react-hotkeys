@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.11.0",
-    "@kkt/raw-modules": "6.11.0",
+    "@kkt/raw-modules": "7.1.1",
     "@kkt/react-library": "6.11.0",
     "@kkt/scope-plugin-options": "6.11.0",
     "@types/classnames": "2.3.1",
