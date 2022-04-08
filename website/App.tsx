@@ -3,6 +3,7 @@ import { HotkeysEvent } from 'hotkeys-js';
 import { Github } from '@uiw/react-shields';
 import GitHubCorners from '@uiw/react-github-corners';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import '@wcj/dark-mode';
 import Hotkeys from '../';
 import MDStr from '../README.md';
 import './App.less';
@@ -41,6 +42,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     const {shortcut, output} = this.state;
     return (
       <div className="warpper">
+        <dark-mode style={{ position: 'fixed', top: 8, left: 10, zIndex: 9999 }}></dark-mode>
         <h1>React Hotkeys</h1>
         <Github user="jaywcjlove" repo="react-hotkeys">
           <Github.Social type="forks" href="https://github.com/jaywcjlove/react-hotkeys/network/members" />
