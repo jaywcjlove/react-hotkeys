@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import * as PropTypes from 'prop-types';
 import Hotkeys, { HotkeysEvent } from 'hotkeys-js';
 
@@ -12,6 +12,7 @@ export interface IReactHotkeysProps {
   allowRepeat?: boolean;
   disabled?: boolean;
   splitKey?: string;
+  children?: React.ReactNode;
 }
 
 export default class ReactHotkeys extends React.Component<IReactHotkeysProps> {
