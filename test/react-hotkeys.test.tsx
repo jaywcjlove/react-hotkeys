@@ -1,6 +1,7 @@
 /* eslint-disable jest/no-conditional-expect */
 import React from 'react'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import TestRenderer from 'react-test-renderer';
 import Hotkeys from '../src';
 
@@ -117,8 +118,8 @@ describe('<Hotkeys /> Event 222.', () => {
       return element
     }
     const elm = setup()
-
-    ReactDOM.render(
+    const root = createRoot(elm);
+    root.render(
       <Hotkeys
         keyName="shift+a"
         onKeyDown={(shortcut, e, handle) => {
@@ -140,7 +141,6 @@ describe('<Hotkeys /> Event 222.', () => {
       >
         <div style={{ padding: "20px" }} />
       </Hotkeys>
-      ,elm
     );
   });
 
