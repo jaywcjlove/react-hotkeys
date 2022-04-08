@@ -1,8 +1,8 @@
 /*!
- * react-hotkeys v2.7.0 
+ * react-hotkeys v2.7.2
  * React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.
- * Copyright (c) 2021 kenny wang <wowohoo@qq.com>
- * Licensed under the MIT license. 
+ * Copyright (c) 2022 kenny wang <wowohoo@qq.com>
+ * Licensed under the MIT license.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -10,120 +10,107 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["react"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactHotkeys"] = factory(require("react"));
+		exports["react-hot-keys"] = factory(require("react"));
 	else
-		root["ReactHotkeys"] = factory(root["React"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
-return /******/ (function(modules) { // webpackBootstrap
+		root["react-hot-keys"] = factory(root["React"]);
+})(self, (__WEBPACK_EXTERNAL_MODULE__787__) => {
+return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 787:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__787__;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
-/******/ })
+/******/ 	
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
-__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ src_ReactHotkeys; });
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ ReactHotkeys)
+});
 
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/createClass.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -137,9 +124,12 @@ function _defineProperties(target, props) {
 function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
   return Constructor;
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -147,7 +137,7 @@ function _assertThisInitialized(self) {
 
   return self;
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
 function _setPrototypeOf(o, p) {
   _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
@@ -156,7 +146,7 @@ function _setPrototypeOf(o, p) {
 
   return _setPrototypeOf(o, p);
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/inherits.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/inherits.js
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -170,55 +160,54 @@ function _inherits(subClass, superClass) {
       configurable: true
     }
   });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
   if (superClass) _setPrototypeOf(subClass, superClass);
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
 function _getPrototypeOf(o) {
   _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
   return _getPrototypeOf(o);
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
 function _isNativeReflectConstruct() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
 
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
     return true;
   } catch (e) {
     return false;
   }
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/typeof.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/typeof.js
 function _typeof(obj) {
   "@babel/helpers - typeof";
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
 
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
   }
 
   return _assertThisInitialized(self);
 }
-// CONCATENATED MODULE: ./node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/esm/createSuper.js
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createSuper.js
 
 
 
@@ -239,19 +228,18 @@ function _createSuper(Derived) {
   };
 }
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
-var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
+var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(787);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
-
-// CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
-/*!
- * hotkeys-js v3.8.7
- * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
+;// CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
+/**! 
+ * hotkeys-js v3.8.8 
+ * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies. 
  * 
- * Copyright (c) 2021 kenny wong <wowohoo@qq.com>
- * http://jaywcjlove.github.io/hotkeys
- * 
- * Licensed under the MIT license.
+ * Copyright (c) 2022 kenny wong <wowohoo@qq.com> 
+ * http://jaywcjlove.github.io/hotkeys 
+ * Licensed under the MIT license 
  */
+
 var isff = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase().indexOf('firefox') > 0 : false; // 绑定事件
 
 function addEvent(object, event, method) {
@@ -399,6 +387,8 @@ for (var k = 1; k < 20; k++) {
 
 var _downKeys = []; // 记录摁下的绑定键
 
+var winListendFocus = false; // window是否已经监听了focus事件
+
 var _scope = 'all'; // 默认热键范围
 
 var elementHasBindEvent = []; // 已绑定事件的节点记录
@@ -425,7 +415,7 @@ function getPressedKeyCodes() {
 // hotkey is effective only when filter return true
 
 
-function hotkeys_esm_filter(event) {
+function filter(event) {
   var target = event.target || event.srcElement;
   var tagName = target.tagName;
   var flag = true; // ignore: isContentEditable === 'true', <input> and <textarea> when readOnly state is false, <select>
@@ -512,10 +502,10 @@ function unbind(keysInfo) {
   } else if (typeof keysInfo === 'string') {
     for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
-    } // support old method
+    }
+
+    // support old method
     // eslint-disable-line
-
-
     var scope = args[0],
         method = args[1];
 
@@ -550,15 +540,10 @@ var eachUnbind = function eachUnbind(_ref) {
 
     if (!scope) scope = getScope();
     var mods = len > 1 ? getMods(_modifier, unbindKeys) : [];
-    _handlers[keyCode] = _handlers[keyCode].map(function (record) {
+    _handlers[keyCode] = _handlers[keyCode].filter(function (record) {
       // 通过函数判断，是否解除绑定，函数相等直接返回
       var isMatchingMethod = method ? record.method === method : true;
-
-      if (isMatchingMethod && record.scope === scope && compareArray(record.mods, mods)) {
-        return {};
-      }
-
-      return record;
+      return !(isMatchingMethod && record.scope === scope && compareArray(record.mods, mods));
     });
   });
 }; // 对监听对应快捷键的回调函数进行处理
@@ -773,9 +758,14 @@ function hotkeys(key, option, method) {
     addEvent(element, 'keydown', function (e) {
       dispatch(e);
     });
-    addEvent(window, 'focus', function () {
-      _downKeys = [];
-    });
+
+    if (!winListendFocus) {
+      winListendFocus = true;
+      addEvent(window, 'focus', function () {
+        _downKeys = [];
+      });
+    }
+
     addEvent(element, 'keyup', function (e) {
       dispatch(e);
       clearModifier(e);
@@ -789,7 +779,7 @@ var _api = {
   deleteScope: deleteScope,
   getPressedKeyCodes: getPressedKeyCodes,
   isPressed: isPressed,
-  filter: hotkeys_esm_filter,
+  filter: filter,
   unbind: unbind
 };
 
@@ -813,10 +803,13 @@ if (typeof window !== 'undefined') {
   window.hotkeys = hotkeys;
 }
 
-/* harmony default export */ var hotkeys_esm = (hotkeys);
-// CONCATENATED MODULE: ./src/index.tsx
-var src_ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);var _super=_createSuper(ReactHotkeys);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_super.call(this,props);_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys_esm.filter=filter;}hotkeys_esm.unbind(this.props.keyName);hotkeys_esm(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys_esm.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);src_ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};
 
-/***/ })
-/******/ ]);
+
+;// CONCATENATED MODULE: ./src/index.tsx
+var ReactHotkeys=/*#__PURE__*/function(_React$Component){_inherits(ReactHotkeys,_React$Component);var _super=_createSuper(ReactHotkeys);function ReactHotkeys(props){var _this;_classCallCheck(this,ReactHotkeys);_this=_super.call(this,props);_this.isKeyDown=false;_this.handle=void 0;_this.onKeyDown=_this.onKeyDown.bind(_assertThisInitialized(_this));_this.onKeyUp=_this.onKeyUp.bind(_assertThisInitialized(_this));_this.handleKeyUpEvent=_this.handleKeyUpEvent.bind(_assertThisInitialized(_this));_this.handle={};return _this;}_createClass(ReactHotkeys,[{key:"componentDidMount",value:function componentDidMount(){var _this$props=this.props,filter=_this$props.filter,splitKey=_this$props.splitKey;if(filter){hotkeys.filter=filter;}hotkeys.unbind(this.props.keyName);hotkeys(this.props.keyName,{splitKey:splitKey},this.onKeyDown);document&&document.body.addEventListener('keyup',this.handleKeyUpEvent);}},{key:"componentWillUnmount",value:function componentWillUnmount(){hotkeys.unbind(this.props.keyName);this.isKeyDown=true;this.handle={};document&&document.body.removeEventListener('keyup',this.handleKeyUpEvent);}},{key:"onKeyUp",value:function onKeyUp(e,handle){var _this$props2=this.props,onKeyUp=_this$props2.onKeyUp,disabled=_this$props2.disabled;!disabled&&onKeyUp&&onKeyUp(handle.shortcut,e,handle);}},{key:"onKeyDown",value:function onKeyDown(e,handle){var _this$props3=this.props,onKeyDown=_this$props3.onKeyDown,allowRepeat=_this$props3.allowRepeat,disabled=_this$props3.disabled;if(this.isKeyDown&&!allowRepeat)return;this.isKeyDown=true;this.handle=handle;!disabled&&onKeyDown&&onKeyDown(handle.shortcut,e,handle);}},{key:"handleKeyUpEvent",value:function handleKeyUpEvent(e){if(!this.isKeyDown)return;this.isKeyDown=false;if(this.props.keyName&&this.props.keyName.indexOf(this.handle.shortcut)<0)return;this.onKeyUp(e,this.handle);this.handle={};}},{key:"render",value:function render(){return this.props.children||null;}}]);return ReactHotkeys;}((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Component);ReactHotkeys.defaultProps={filter:function filter(event){var target=event.target||event.srcElement;var tagName=target.tagName;return!(target.isContentEditable||tagName==='INPUT'||tagName==='SELECT'||tagName==='TEXTAREA');}};
+})();
+
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
