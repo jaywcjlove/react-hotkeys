@@ -1,8 +1,8 @@
 react-hotkeys
----
+===
 
 [![NPM Downloads](https://img.shields.io/npm/dm/react-hot-keys.svg?style=flat)](https://www.npmjs.com/package/react-hot-keys)
-[![Build & Deploy](https://github.com/jaywcjlove/react-hotkeys/workflows/Build%20&%20Deploy/badge.svg)](https://github.com/jaywcjlove/react-hotkeys/actions)
+[![CI](https://github.com/jaywcjlove/react-hotkeys/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/react-hotkeys/actions/workflows/ci.yml)
 [![npm package](https://img.shields.io/npm/v/react-hot-keys.svg)](https://www.npmjs.org/package/react-hot-keys) [![Coveralls](https://jaywcjlove.github.io/react-hotkeys/coverage/badges.svg)](https://jaywcjlove.github.io/react-hotkeys/coverage/lcov-report/)
 
 <!--dividing-->
@@ -106,16 +106,26 @@ Disable `onKeyDown` and `onKeyUp` events. Default: `undefined`
 `INPUT` `SELECT` `TEXTAREA` default does not handle. `filter` to return to the true shortcut keys set to play a role, flase shortcut keys set up failure.
 
 ```diff
-<Hotkeys 
-  keyName="shift+a,alt+s" 
-+  filter={(event) => {
-+    return true;
-+  }}
-  onKeyDown={this.onKeyDown.bind(this)}
-  onKeyUp={this.onKeyUp.bind(this)}
-/>
+ <Hotkeys 
+   keyName="shift+a,alt+s" 
++   filter={(event) => {
++     return true;
++   }}
+   onKeyDown={this.onKeyDown.bind(this)}
+   onKeyUp={this.onKeyUp.bind(this)}
+ />
 ```
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/react-hotkeys/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/react-hotkeys/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 ## License
 
-MIT
+Licensed under the MIT License.
