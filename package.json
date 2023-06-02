@@ -62,7 +62,7 @@
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "~7.1.1",
+    "@kkt/less-modules": "~7.5.0",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",
     "@kkt/ncc": "~1.0.13",
