@@ -3,17 +3,20 @@
   "version": "2.7.2",
   "description": "React component to listen to keydown and keyup keyboard events, defining and  dispatching keyboard shortcuts.",
   "author": "kenny wang <wowohoo@qq.com>",
+  "license": "MIT",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "homepage": "https://jaywcjlove.github.io/react-hotkeys/",
   "scripts": {
     "prepare": "npm run build",
-    "watch": "tsbb watch",
-    "build": "tsbb build && npm run bundle && npm run bundle:min",
+
+    "build": "tsbb build src/*.tsx --use-babel --cjs cjs --bail",
+    "watch": "tsbb watch src/*.tsx --use-babel --cjs cjs",
+
     "bundle": "ncc build src/index.tsx --target web --filename react-hotkeys",
     "bundle:min": "ncc build src/index.tsx --target web --filename react-hotkeys --minify",
-    "coverage": "tsbb test --env=jsdom --coverage",
-    "test": "tsbb test --env=jsdom",
+    "coverage": "tsbb test --coverage",
+    "test": "tsbb test",
     "doc": "kkt build --app-src ./website",
     "start": "kkt start --app-src ./website"
   },
@@ -55,37 +58,36 @@
     "shortcuts",
     "keypress"
   ],
-  "license": "MIT",
   "peerDependencies": {
     "@babel/runtime": ">=7.10.0",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "~7.1.1",
-    "@kkt/raw-modules": "~7.1.1",
-    "@kkt/scope-plugin-options": "~7.1.1",
-    "@kkt/ncc": "~1.0.13",
+    "@kkt/less-modules": "^7.5.4",
+    "@kkt/raw-modules": "^7.5.4",
+    "@kkt/scope-plugin-options": "^7.5.4",
+    "@kkt/ncc": "~1.1.1",
     "@types/classnames": "~2.3.1",
-    "@types/jest": "~27.4.1",
-    "@types/react": "~18.0.0",
-    "@types/react-dom": "~18.0.0",
-    "@types/react-test-renderer": "~17.0.1",
-    "@uiw/react-github-corners": "~1.5.14",
-    "@uiw/react-markdown-preview": "~4.0.5",
-    "@uiw/react-shields": "~1.1.3",
-    "@wcj/dark-mode": "~1.0.14",
+    "@types/jest": "^29.5.11",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-test-renderer": "^18.0.7",
+    "@uiw/react-github-corners": "^1.5.16",
+    "@uiw/react-markdown-preview": "^5.0.3",
+    "@uiw/react-shields": "^2.0.1",
+    "@wcj/dark-mode": "^1.0.16",
     "classnames": "~2.3.1",
-    "kkt": "~7.1.5",
-    "react": "~18.0.0",
-    "react-dom": "~18.0.0",
-    "react-test-renderer": "~18.0.0",
-    "jest": "~27.5.1",
-    "tsbb": "~3.7.2"
+    "kkt": "^7.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
+    "jest": "^29.7.0",
+    "tsbb": "^4.2.4"
   },
   "dependencies": {
-    "hotkeys-js": "^3.8.1",
-    "prop-types": "^15.7.2"
+    "hotkeys-js": "^3.13.2",
+    "prop-types": "^15.8.1"
   },
   "browserslist": {
     "production": [

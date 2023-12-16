@@ -27,9 +27,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "website",
-    "src",
-    ".kktrc.ts",
-    "test"
+    "src"
   ]
 }

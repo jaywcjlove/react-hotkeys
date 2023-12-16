@@ -37,6 +37,11 @@ export default (conf: Configuration, env: 'development' | 'production', options:
         VERSION: JSON.stringify(pkg.version),
       }),
     );
+    /**
+     * fix failed to parse source map issue
+     * https://github.com/kktjs/kkt/issues/446
+     */
+    conf.ignoreWarnings = [{ module: /node_modules[\\/]parse5[\\/]/ }];
     if (env === 'production') {
       conf.output = { ...conf.output, publicPath: './' };
     }
