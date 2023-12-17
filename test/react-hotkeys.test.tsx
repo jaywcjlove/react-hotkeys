@@ -3,7 +3,7 @@ import React from 'react'
 // import ReactDOM from 'react-dom'
 import { createRoot } from 'react-dom/client';
 import TestRenderer from 'react-test-renderer';
-import Hotkeys from '../';
+import Hotkeys from '../src';
 
 
 describe('<Hotkeys /> Basic test.', () => {
