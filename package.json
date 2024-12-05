@@ -72,7 +72,7 @@
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "@types/react-test-renderer": "^18.0.7",
+    "@types/react-test-renderer": "^19.0.0",
     "@uiw/react-github-corners": "^1.5.16",
     "@uiw/react-markdown-preview": "^5.0.3",
     "@uiw/react-shields": "^2.0.1",
