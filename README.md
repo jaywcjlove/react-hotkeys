@@ -103,6 +103,78 @@ export default class HotkeysDemo extends React.Component {
   }
 }
 ```
+
+### Functional Component Example
+
+```js
+import React, { useState } from 'react';
+import Hotkeys from 'react-hot-keys';
+
+export default function HotkeysDemo() {
+  const [output, setOutput] = useState('Hello, I am a functional component that listens to keydown and keyup');
+
+  const onKeyUp = (keyName, e, handle) => {
+    console.log("test:onKeyUp", e, handle);
+    setOutput(`onKeyUp ${keyName}`);
+  };
+
+  const onKeyDown = (keyName, e, handle) => {
+    console.log("test:onKeyDown", keyName, e, handle);
+    setOutput(`onKeyDown ${keyName}`);
+  };
+
+  return (
+    <Hotkeys 
+      keyName="shift+a,alt+s" 
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+    >
+      <div style={{ padding: "50px" }}>
+        {output}
+      </div>
+    </Hotkeys>
+  );
+}
+```
+
+### With useRef Example
+
+```js
+import React, { useState, useRef } from 'react';
+import Hotkeys from 'react-hot-keys';
+
+export default function HotkeysWithRef() {
+  const [output, setOutput] = useState('Press shift+a or alt+s to test');
+  const hotkeysRef = useRef(null);
+
+  const onKeyDown = (keyName, e, handle) => {
+    console.log("onKeyDown", keyName, e, handle);
+    console.log("Current isKeyDown state:", hotkeysRef.current?.isKeyDown);
+    setOutput(`Key pressed: ${keyName}`);
+  };
+
+  const onKeyUp = (keyName, e, handle) => {
+    console.log("onKeyUp", keyName, e, handle);
+    console.log("Current isKeyDown state:", hotkeysRef.current?.isKeyDown);
+    setOutput(`Key released: ${keyName}`);
+  };
+
+  return (
+    <Hotkeys
+      ref={hotkeysRef}
+      keyName="shift+a,alt+s"
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+      allowRepeat={true}
+    >
+      <div style={{ padding: "50px", border: "1px solid #ccc" }}>
+        <p>{output}</p>
+        <p>Try pressing and holding shift+a or alt+s</p>
+      </div>
+    </Hotkeys>
+  );
+}
+```
 ## API 
 
 ### keyName

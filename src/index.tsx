@@ -38,39 +38,67 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
     children,
   } = props;
 
-  const isKeyDownRef = useRef(false);
-  const handleRef = useRef({} as HotkeysEvent);
+  const activeKeysRef = useRef(new Set<string>());
+  const currentHandleRef = useRef({} as HotkeysEvent);
 
-  const onKeyUpHandler = useCallback((e: KeyboardEvent, handle: HotkeysEvent) => {
-    if (!disabled && onKeyUp) {
-      onKeyUp(handle.shortcut, e, handle);
+  // 处理 keydown 事件
+  const handleKeyDown = useCallback((keyboardEvent: KeyboardEvent, hotkeysEvent: HotkeysEvent) => {
+    if (disabled) return;
+    
+    const shortcut = hotkeysEvent.shortcut;
+    const isAlreadyPressed = activeKeysRef.current.has(shortcut);
+    
+    // 如果不允许重复且已经按下，则跳过
+    if (isAlreadyPressed && !allowRepeat) return;
+    
+    // 记录当前按下的快捷键
+    activeKeysRef.current.add(shortcut);
+    currentHandleRef.current = hotkeysEvent;
+    
+    // 触发 onKeyDown 回调
+    if (onKeyDown) {
+      onKeyDown(shortcut, keyboardEvent, hotkeysEvent);
+    }
+  }, [disabled, allowRepeat, onKeyDown]);
+
+  // 处理 keyup 事件 - 使用原生事件监听
+  const handleKeyUp = useCallback((keyboardEvent: KeyboardEvent) => {
+    if (disabled || !onKeyUp) return;
+    
+    // 检查是否有我们关心的按键被释放
+    const currentPressed = Hotkeys.getPressedKeyString();
+    const releasedKeys = Array.from(activeKeysRef.current).filter(key => {
+      // 如果当前按键字符串中不包含这个快捷键，说明它被释放了
+      return !currentPressed.includes(key);
+    });
+    
+    // 处理被释放的按键
+    releasedKeys.forEach(shortcut => {
+      if (activeKeysRef.current.has(shortcut)) {
+        activeKeysRef.current.delete(shortcut);
+        
+        // 构造 HotkeysEvent（基于最后记录的 handle）
+        const hotkeysEvent = {
+          ...currentHandleRef.current,
+          shortcut
+        };
+        
+        onKeyUp(shortcut, keyboardEvent, hotkeysEvent);
+      }
+    });
+    
+    // 清空 handle 如果没有按键被按下
+    if (activeKeysRef.current.size === 0) {
+      currentHandleRef.current = {} as HotkeysEvent;
     }
   }, [disabled, onKeyUp]);
 
-  const onKeyDownHandler = useCallback((e: KeyboardEvent, handle: HotkeysEvent) => {
-    if (isKeyDownRef.current && !allowRepeat) return;
-    isKeyDownRef.current = true;
-    handleRef.current = handle;
-    if (!disabled && onKeyDown) {
-      onKeyDown(handle.shortcut, e, handle);
-    }
-  }, [allowRepeat, disabled, onKeyDown]);
-
-  const handleKeyUpEvent = useCallback((e: KeyboardEvent) => {
-    if (!isKeyDownRef.current) return;
-    isKeyDownRef.current = false;
-    const handle = handleRef.current;
-    if (keyName && keyName.indexOf(handle.shortcut) < 0) return;
-    onKeyUpHandler(e, handle);
-    handleRef.current = {} as HotkeysEvent;
-  }, [keyName, onKeyUpHandler]);
-
   useImperativeHandle(ref, () => ({
     get isKeyDown() {
-      return isKeyDownRef.current;
+      return activeKeysRef.current.size > 0;
     },
     get handle() {
-      return handleRef.current;
+      return currentHandleRef.current;
     },
     get props() {
       return props;
@@ -78,26 +106,45 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
   }), [props]);
 
   useEffect(() => {
-    Hotkeys.filter = filter;
+    // 设置过滤器
+    if (filter) {
+      Hotkeys.filter = filter;
+    }
+    
+    // 绑定快捷键
     if (keyName) {
       Hotkeys.unbind(keyName);
-      Hotkeys(keyName, { splitKey }, onKeyDownHandler);
+      Hotkeys(keyName, { splitKey, keydown: true, keyup: true }, handleKeyDown);
     }
-    if (typeof document !== 'undefined') {
-      document.body.addEventListener('keyup', handleKeyUpEvent);
-    }
-
+    
     return () => {
       if (keyName) {
         Hotkeys.unbind(keyName);
       }
-      isKeyDownRef.current = true;
-      handleRef.current = {} as HotkeysEvent;
+      activeKeysRef.current.clear();
+      currentHandleRef.current = {} as HotkeysEvent;
+    };
+  }, [keyName, splitKey, filter, handleKeyDown]);
+
+  // 单独管理 keyup 事件监听
+  useEffect(() => {
+    if (!onKeyUp) return;
+    
+    const handleGlobalKeyUp = (e: KeyboardEvent) => {
+      // 使用 setTimeout 确保 hotkeys-js 内部状态已更新
+      setTimeout(() => handleKeyUp(e), 0);
+    };
+    
+    if (typeof document !== 'undefined') {
+      document.addEventListener('keyup', handleGlobalKeyUp);
+    }
+    
+    return () => {
       if (typeof document !== 'undefined') {
-        document.body.removeEventListener('keyup', handleKeyUpEvent);
+        document.removeEventListener('keyup', handleGlobalKeyUp);
       }
     };
-  }, [filter, handleKeyUpEvent, keyName, onKeyDownHandler, splitKey]);
+  }, [onKeyUp, handleKeyUp]);
 
   return <>{children}</>;
 });
