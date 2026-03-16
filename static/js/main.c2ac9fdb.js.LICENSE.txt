@@ -50,10 +50,10 @@
  */
 
 /**! 
- * @uiw/copy-to-clipboard v1.0.17 
+ * @uiw/copy-to-clipboard v1.0.20 
  * Copy to clipboard. 
  * 
- * Copyright (c) 2024 Kenny Wang 
+ * Copyright (c) 2026 Kenny Wang 
  * https://github.com/uiwjs/copy-to-clipboard.git 
  * 
  * @website: https://uiwjs.github.io/copy-to-clipboard
@@ -62,10 +62,10 @@
  */
 
 /**! 
- * hotkeys-js v3.13.7 
+ * hotkeys-js v3.13.15 
  * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies. 
  * 
- * Copyright (c) 2024 kenny wong <wowohoo@qq.com> 
+ * Copyright (c) 2025 kenny wong <wowohoo@qq.com> 
  * https://github.com/jaywcjlove/hotkeys-js.git 
  * 
  * @website: https://jaywcjlove.github.io/hotkeys-js

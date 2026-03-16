@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/react-hotkeys/static/css/main.6d997bfe.css",
-    "main.js": "/react-hotkeys/static/js/main.a6794d2f.js",
+    "main.css": "/react-hotkeys/static/css/main.79952abd.css",
+    "main.js": "/react-hotkeys/static/js/main.c2ac9fdb.js",
     "index.html": "/react-hotkeys/index.html",
-    "main.6d997bfe.css.map": "/react-hotkeys/static/css/main.6d997bfe.css.map",
-    "main.a6794d2f.js.map": "/react-hotkeys/static/js/main.a6794d2f.js.map"
+    "main.79952abd.css.map": "/react-hotkeys/static/css/main.79952abd.css.map",
+    "main.c2ac9fdb.js.map": "/react-hotkeys/static/js/main.c2ac9fdb.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d997bfe.css",
-    "static/js/main.a6794d2f.js"
+    "static/css/main.79952abd.css",
+    "static/js/main.c2ac9fdb.js"
   ]
 }
