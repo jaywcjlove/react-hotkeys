@@ -9,10 +9,8 @@
   "homepage": "https://jaywcjlove.github.io/react-hotkeys/",
   "scripts": {
     "prepare": "npm run build",
-
     "build": "tsbb build src/*.tsx --use-babel --cjs cjs --bail",
     "watch": "tsbb watch src/*.tsx --use-babel --cjs cjs",
-
     "bundle": "ncc build src/index.tsx --target web --filename react-hotkeys",
     "bundle:min": "ncc build src/index.tsx --target web --filename react-hotkeys --minify",
     "coverage": "tsbb test --coverage",
@@ -22,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaywcjlove/react-hotkeys"
+    "url": "git+https://github.com/jaywcjlove/react-hotkeys.git"
   },
   "eslintConfig": {
     "extends": [
