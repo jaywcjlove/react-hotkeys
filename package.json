@@ -84,8 +84,7 @@
     "tsbb": "^4.2.4"
   },
   "dependencies": {
-    "hotkeys-js": "^3.13.2",
-    "prop-types": "^15.8.1"
+    "hotkeys-js": "^3.13.2"
   },
   "browserslist": {
     "production": [

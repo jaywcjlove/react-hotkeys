@@ -3,7 +3,7 @@ import React from 'react'
 // import ReactDOM from 'react-dom'
 import { createRoot } from 'react-dom/client';
 import TestRenderer from 'react-test-renderer';
-import Hotkeys from '../src';
+import Hotkeys, { ReactHotkeysRef } from '../src';
 
 
 describe('<Hotkeys /> Basic test.', () => {
@@ -13,8 +13,6 @@ describe('<Hotkeys /> Basic test.', () => {
     let tree = component.toTree();
     if (tree && !Array.isArray(tree)) {
       expect(tree.nodeType).toBe('component');
-      expect(typeof (tree.props.filter)).toBe('function');
-      expect(Object.keys((tree.type as any).propTypes)).toEqual(['keyName', 'filter', 'onKeyDown', 'onKeyUp', 'disabled', 'splitKey']);
       expect(component.toJSON()).toBeNull();
     }
   });
@@ -28,10 +26,7 @@ describe('<Hotkeys /> Basic test.', () => {
       expect(jsond.type).toBe('div');
       expect(jsond.children).toEqual(['Hotkeys']);
     }
-    const tree = component.toTree();
-    if (tree && typeof tree === 'object') {
-      expect(tree.props.keyName).toBe('shift+a,alt+s,del');
-    }
+    expect(component.root.props.keyName).toBe('shift+a,alt+s,del');
   });
 
   it('Component testing', () => {
@@ -50,7 +45,7 @@ describe('<Hotkeys /> Basic test.', () => {
 
 describe('<Hotkeys /> Event simulation test.', () => {
 
-  let ref: Hotkeys | null;
+  let ref: ReactHotkeysRef | null;
   TestRenderer.create(
     <Hotkeys
       ref={(r) => { ref = r }}
