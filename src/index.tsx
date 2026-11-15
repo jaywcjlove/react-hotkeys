@@ -26,6 +26,70 @@ const defaultFilter = (event: KeyboardEvent) => {
   return !(target.isContentEditable || tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA');
 };
 
+const modifierAliases: Record<string, string[]> = {
+  shift: ['shift', '⇧'],
+  '⇧': ['shift', '⇧'],
+  alt: ['alt', 'option', '⌥'],
+  option: ['alt', 'option', '⌥'],
+  '⌥': ['alt', 'option', '⌥'],
+  ctrl: ['control', 'ctrl', '⌃'],
+  control: ['control', 'ctrl', '⌃'],
+  '⌃': ['control', 'ctrl', '⌃'],
+  meta: ['meta', 'os', 'cmd', 'command', '⌘'],
+  cmd: ['meta', 'os', 'cmd', 'command', '⌘'],
+  command: ['meta', 'os', 'cmd', 'command', '⌘'],
+  '⌘': ['meta', 'os', 'cmd', 'command', '⌘'],
+};
+
+const modifierEventFlag = (part: string): 'shiftKey' | 'altKey' | 'ctrlKey' | 'metaKey' | undefined => {
+  switch (part.toLowerCase()) {
+    case 'shift':
+    case '⇧':
+      return 'shiftKey';
+    case 'alt':
+    case 'option':
+    case '⌥':
+      return 'altKey';
+    case 'ctrl':
+    case 'control':
+    case '⌃':
+      return 'ctrlKey';
+    case 'meta':
+    case 'os':
+    case 'cmd':
+    case 'command':
+    case '⌘':
+      return 'metaKey';
+    default:
+      return undefined;
+  }
+};
+
+// 这一次 keyup 松开的键，即使 hotkeys-js 还把它记在按下列表里，也算已经松开。
+const eventReleasesPart = (event: KeyboardEvent, part: string) => {
+  const eventKey = (event.key || '').toLowerCase();
+  if (eventKey === part.toLowerCase()) return true;
+  const aliases = modifierAliases[part] || modifierAliases[part.toLowerCase()];
+  return !!aliases && aliases.includes(eventKey);
+};
+
+const isShortcutHeld = (shortcut: string, splitKey: string | undefined, event: KeyboardEvent) => {
+  const delimiter = splitKey || '+';
+  return shortcut.split(delimiter).every((part) => {
+    if (eventReleasesPart(event, part)) return false;
+    return Hotkeys.isPressed(part);
+  });
+};
+
+// macOS 松开 Shift 后会再发一次字母 keydown。修饰键以这次事件上的状态为准，避免快捷键被重新点亮。
+const shortcutModifiersHeld = (shortcut: string, splitKey: string | undefined, event: KeyboardEvent) => {
+  const delimiter = splitKey || '+';
+  return shortcut.split(delimiter).every((part) => {
+    const flag = modifierEventFlag(part);
+    return !flag || event[flag] === true;
+  });
+};
+
 const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((props, ref) => {
   const {
     keyName,
@@ -40,58 +104,66 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
 
   const activeKeysRef = useRef(new Set<string>());
   const currentHandleRef = useRef({} as HotkeysEvent);
+  // 回调每次 render 都可能是新函数。放进 ref，避免重新绑定 hotkeys 时把按下状态清掉。
+  const latestRef = useRef({ onKeyDown, onKeyUp, disabled, allowRepeat, splitKey });
+  latestRef.current = { onKeyDown, onKeyUp, disabled, allowRepeat, splitKey };
 
   // 处理 keydown 事件
   const handleKeyDown = useCallback((keyboardEvent: KeyboardEvent, hotkeysEvent: HotkeysEvent) => {
-    if (disabled) return;
-    
+    const { onKeyDown: keyDown, disabled: isDisabled, allowRepeat: repeat, splitKey: delimiter } = latestRef.current;
+    if (isDisabled || keyboardEvent.type === 'keyup') return;
+    if (!shortcutModifiersHeld(hotkeysEvent.shortcut, delimiter, keyboardEvent)) return;
+
     const shortcut = hotkeysEvent.shortcut;
     const isAlreadyPressed = activeKeysRef.current.has(shortcut);
-    
+
+    // 命中快捷键就拦住浏览器默认行为，例如 command+f 打开查找。
+    keyboardEvent.preventDefault();
+
     // 如果不允许重复且已经按下，则跳过
-    if (isAlreadyPressed && !allowRepeat) return;
-    
+    if (isAlreadyPressed && !repeat) return false;
+
     // 记录当前按下的快捷键
     activeKeysRef.current.add(shortcut);
     currentHandleRef.current = hotkeysEvent;
-    
+
     // 触发 onKeyDown 回调
-    if (onKeyDown) {
-      onKeyDown(shortcut, keyboardEvent, hotkeysEvent);
+    if (keyDown) {
+      keyDown(shortcut, keyboardEvent, hotkeysEvent);
     }
-  }, [disabled, allowRepeat, onKeyDown]);
+    // hotkeys-js 在回调返回 false 时也会 preventDefault。
+    return false;
+  }, []);
 
   // 处理 keyup 事件 - 使用原生事件监听。省略 onKeyUp 时也要清掉按下状态。
   const handleKeyUp = useCallback((keyboardEvent: KeyboardEvent) => {
-    // 检查是否有我们关心的按键被释放
-    const currentPressed = Hotkeys.getPressedKeyString();
-    const releasedKeys = Array.from(activeKeysRef.current).filter(key => {
-      // 如果当前按键字符串中不包含这个快捷键，说明它被释放了
-      return !currentPressed.includes(key);
+    const { onKeyUp: keyUp, disabled: isDisabled, splitKey: delimiter } = latestRef.current;
+    const releasedKeys = Array.from(activeKeysRef.current).filter((shortcut) => {
+      return !isShortcutHeld(shortcut, delimiter, keyboardEvent);
     });
-    
+
     // 处理被释放的按键
     releasedKeys.forEach(shortcut => {
       if (activeKeysRef.current.has(shortcut)) {
         activeKeysRef.current.delete(shortcut);
 
-        if (!disabled && onKeyUp) {
+        if (!isDisabled && keyUp) {
           // 构造 HotkeysEvent（基于最后记录的 handle）
           const hotkeysEvent = {
             ...currentHandleRef.current,
             shortcut
           };
 
-          onKeyUp(shortcut, keyboardEvent, hotkeysEvent);
+          keyUp(shortcut, keyboardEvent, hotkeysEvent);
         }
       }
     });
-    
+
     // 清空 handle 如果没有按键被按下
     if (activeKeysRef.current.size === 0) {
       currentHandleRef.current = {} as HotkeysEvent;
     }
-  }, [disabled, onKeyUp]);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     get isKeyDown() {
@@ -110,13 +182,13 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
     if (filter) {
       Hotkeys.filter = filter;
     }
-    
+
     // 只绑定 keydown。keyup 交给下面的 document 监听，避免 allowRepeat 时 onKeyDown 在松开时再触发。
     if (keyName) {
       Hotkeys.unbind(keyName);
       Hotkeys(keyName, { splitKey, keydown: true, keyup: false }, handleKeyDown);
     }
-    
+
     return () => {
       if (keyName) {
         Hotkeys.unbind(keyName);
@@ -132,11 +204,11 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
       // 使用 setTimeout 确保 hotkeys-js 内部状态已更新
       setTimeout(() => handleKeyUp(e), 0);
     };
-    
+
     if (typeof document !== 'undefined') {
       document.addEventListener('keyup', handleGlobalKeyUp);
     }
-    
+
     return () => {
       if (typeof document !== 'undefined') {
         document.removeEventListener('keyup', handleGlobalKeyUp);

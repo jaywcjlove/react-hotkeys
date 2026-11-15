@@ -55,7 +55,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
         </Github>
         <GitHubCorners href="https://github.com/jaywcjlove/react-hotkeys" target="__blank" fixed zIndex={9999} />
         <Hotkeys
-          keyName="shift+a,alt+s,shift+/"
+          keyName="shift+a,alt+s,shift+/,command+f"
           onKeyDown={this.onKeyDown.bind(this)}
           onKeyUp={this.onKeyUp.bind(this)}
         >
@@ -72,6 +72,9 @@ export default class App extends React.PureComponent<AppProps, AppState> {
               </div>
               <div className={shortcut === 'shift+/' ? 'active' : ''}>
                 <kbd>shift</kbd> + <kbd>/</kbd>
+              </div>
+              <div className={shortcut === 'command+f' ? 'active' : ''}>
+                <kbd>command</kbd> + <kbd>f</kbd>
               </div>
             </div>
             {output && (

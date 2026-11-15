@@ -527,6 +527,235 @@ describe('<Hotkeys /> press and release', () => {
       'down(keydown)', 'up(keyup)',
     ]);
   });
+
+  async function pressCombo(releaseFirst: 'a' | 'Shift') {
+    const events: string[] = [];
+    const ref = React.createRef<ReactHotkeysRef>();
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const root = createRoot(el);
+    const actEnv = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+    const previousActEnv = actEnv.IS_REACT_ACT_ENVIRONMENT;
+    actEnv.IS_REACT_ACT_ENVIRONMENT = true;
+
+    const dispatchKey = (type: 'keydown' | 'keyup', key: string, shiftKey: boolean) => {
+      const keyCode = key === 'Shift' ? 16 : key.toUpperCase().charCodeAt(0);
+      document.dispatchEvent(new KeyboardEvent(type, {
+        key,
+        code: key === 'Shift' ? 'ShiftLeft' : `Key${key.toUpperCase()}`,
+        keyCode,
+        which: keyCode,
+        shiftKey,
+        bubbles: true,
+      } as KeyboardEventInit));
+    };
+
+    function Demo() {
+      const [shortcut, setShortcut] = React.useState('');
+      return (
+        <Hotkeys
+          ref={ref}
+          keyName="shift+a"
+          onKeyDown={(keyName) => {
+            events.push(`down(${keyName})`);
+            setShortcut(keyName);
+          }}
+          onKeyUp={(keyName) => {
+            events.push(`up(${keyName})`);
+            setShortcut('');
+          }}
+        >
+          <span>{shortcut}</span>
+        </Hotkeys>
+      );
+    }
+
+    try {
+      await act(async () => {
+        root.render(<Demo />);
+      });
+      await act(async () => {
+        dispatchKey('keydown', 'Shift', true);
+        dispatchKey('keydown', 'A', true);
+      });
+      await act(async () => {
+        if (releaseFirst === 'a') {
+          dispatchKey('keyup', 'A', true);
+        } else {
+          dispatchKey('keyup', 'Shift', false);
+        }
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      });
+      const afterFirstRelease = {
+        events: events.slice(),
+        shortcut: el.querySelector('span')?.textContent,
+        isKeyDown: ref.current?.isKeyDown,
+      };
+      await act(async () => {
+        if (releaseFirst === 'a') {
+          dispatchKey('keyup', 'Shift', false);
+        } else {
+          dispatchKey('keyup', 'a', false);
+        }
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      });
+      return { events, afterFirstRelease };
+    } finally {
+      try {
+        await act(async () => {
+          root.unmount();
+        });
+        el.remove();
+      } finally {
+        actEnv.IS_REACT_ACT_ENVIRONMENT = previousActEnv;
+      }
+    }
+  }
+
+  it('clears the active shortcut when a is released before shift', async () => {
+    const { events, afterFirstRelease } = await pressCombo('a');
+    expect(afterFirstRelease.shortcut).toBe('');
+    expect(afterFirstRelease.isKeyDown).toBe(false);
+    expect(events).toEqual(['down(shift+a)', 'up(shift+a)']);
+  });
+
+  it('clears the active shortcut when shift is released before a', async () => {
+    const { events, afterFirstRelease } = await pressCombo('Shift');
+    expect(afterFirstRelease.shortcut).toBe('');
+    expect(afterFirstRelease.isKeyDown).toBe(false);
+    expect(events).toEqual(['down(shift+a)', 'up(shift+a)']);
+  });
+
+  it('does not reactivate shift+a when the letter is reported again after shift is released', async () => {
+    const events: string[] = [];
+    const ref = React.createRef<ReactHotkeysRef>();
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const root = createRoot(el);
+    const actEnv = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+    const previousActEnv = actEnv.IS_REACT_ACT_ENVIRONMENT;
+    actEnv.IS_REACT_ACT_ENVIRONMENT = true;
+
+    const dispatchKey = (type: 'keydown' | 'keyup', key: string, shiftKey: boolean) => {
+      const keyCode = key === 'Shift' ? 16 : key.toUpperCase().charCodeAt(0);
+      document.dispatchEvent(new KeyboardEvent(type, {
+        key,
+        code: key === 'Shift' ? 'ShiftLeft' : `Key${key.toUpperCase()}`,
+        keyCode,
+        which: keyCode,
+        shiftKey,
+        bubbles: true,
+      } as KeyboardEventInit));
+    };
+
+    function Demo() {
+      const [shortcut, setShortcut] = React.useState('');
+      return (
+        <Hotkeys
+          ref={ref}
+          keyName="shift+a"
+          onKeyDown={(keyName) => {
+            events.push(`down(${keyName})`);
+            setShortcut(keyName);
+          }}
+          onKeyUp={(keyName) => {
+            events.push(`up(${keyName})`);
+            setShortcut('');
+          }}
+        >
+          <span>{shortcut}</span>
+        </Hotkeys>
+      );
+    }
+
+    try {
+      await act(async () => {
+        root.render(<Demo />);
+      });
+      await act(async () => {
+        dispatchKey('keydown', 'Shift', true);
+        dispatchKey('keydown', 'A', true);
+      });
+      await act(async () => {
+        dispatchKey('keyup', 'Shift', false);
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      });
+      await act(async () => {
+        dispatchKey('keydown', 'a', false);
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      });
+      expect(el.querySelector('span')?.textContent).toBe('');
+      expect(ref.current?.isKeyDown).toBe(false);
+      expect(events).toEqual(['down(shift+a)', 'up(shift+a)']);
+    } finally {
+      try {
+        await act(async () => {
+          root.unmount();
+        });
+        el.remove();
+      } finally {
+        actEnv.IS_REACT_ACT_ENVIRONMENT = previousActEnv;
+      }
+    }
+  });
+
+  it('prevents the browser find dialog for command+f', async () => {
+    const events: string[] = [];
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const root = createRoot(el);
+    const actEnv = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+    const previousActEnv = actEnv.IS_REACT_ACT_ENVIRONMENT;
+    actEnv.IS_REACT_ACT_ENVIRONMENT = true;
+
+    const dispatchKey = (type: 'keydown' | 'keyup', key: string, metaKey: boolean) => {
+      const keyCode = key === 'Meta' ? 91 : key.toUpperCase().charCodeAt(0);
+      return document.dispatchEvent(new KeyboardEvent(type, {
+        key,
+        code: key === 'Meta' ? 'MetaLeft' : `Key${key.toUpperCase()}`,
+        keyCode,
+        which: keyCode,
+        metaKey,
+        bubbles: true,
+        cancelable: true,
+      } as KeyboardEventInit));
+    };
+
+    try {
+      await act(async () => {
+        root.render(
+          <Hotkeys
+            keyName="command+f"
+            onKeyDown={(keyName) => {
+              events.push(`down(${keyName})`);
+            }}
+          />
+        );
+      });
+      let plainFBlocked = true;
+      let commandFBlocked = false;
+      await act(async () => {
+        plainFBlocked = !dispatchKey('keydown', 'f', false);
+        dispatchKey('keyup', 'f', false);
+      });
+      await act(async () => {
+        dispatchKey('keydown', 'Meta', true);
+        commandFBlocked = !dispatchKey('keydown', 'f', true);
+      });
+      expect(events).toEqual(['down(command+f)']);
+      expect(plainFBlocked).toBe(false);
+      expect(commandFBlocked).toBe(true);
+    } finally {
+      try {
+        await act(async () => {
+          root.unmount();
+        });
+        el.remove();
+      } finally {
+        actEnv.IS_REACT_ACT_ENVIRONMENT = previousActEnv;
+      }
+    }
+  });
 });
 
 
