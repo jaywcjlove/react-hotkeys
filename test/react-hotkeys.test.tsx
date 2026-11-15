@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-conditional-expect */
-import React from 'react'
+import React, { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import TestRenderer from 'react-test-renderer';
 import Hotkeys, { ReactHotkeysRef } from '../src';
@@ -444,6 +444,89 @@ describe('<Hotkeys /> Filter testing', () => {
     expect(customFilter).toBeDefined();
   });
 
+});
+
+describe('<Hotkeys /> press and release', () => {
+  async function pressAndRelease(options: { allowRepeat?: boolean; onKeyUp?: boolean }) {
+    const events: string[] = [];
+    const ref = React.createRef<ReactHotkeysRef>();
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const root = createRoot(el);
+    const actEnv = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+    const previousActEnv = actEnv.IS_REACT_ACT_ENVIRONMENT;
+    actEnv.IS_REACT_ACT_ENVIRONMENT = true;
+
+    try {
+      await act(async () => {
+        root.render(
+          <Hotkeys
+            ref={ref}
+            keyName="a"
+            allowRepeat={options.allowRepeat}
+            onKeyDown={(_keyName, event) => {
+              events.push(`down(${event.type})`);
+            }}
+            onKeyUp={options.onKeyUp ? (_keyName, event) => {
+              events.push(`up(${event.type})`);
+            } : undefined}
+          />
+        );
+      });
+
+      for (let i = 0; i < 3; i += 1) {
+        await act(async () => {
+          document.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true }));
+        });
+        await act(async () => {
+          document.dispatchEvent(new KeyboardEvent('keyup', { key: 'a', bubbles: true }));
+          await new Promise((resolve) => setTimeout(resolve, 10));
+        });
+      }
+      return { events, isKeyDown: ref.current?.isKeyDown };
+    } finally {
+      try {
+        await act(async () => {
+          root.unmount();
+        });
+        el.remove();
+      } finally {
+        actEnv.IS_REACT_ACT_ENVIRONMENT = previousActEnv;
+      }
+    }
+  }
+
+  it('fires onKeyDown on every press when onKeyUp is omitted', async () => {
+    const { events, isKeyDown } = await pressAndRelease({});
+    expect(isKeyDown).toBe(false);
+    expect(events).toEqual(['down(keydown)', 'down(keydown)', 'down(keydown)']);
+  });
+
+  it('does not fire onKeyDown on keyup when allowRepeat is enabled', async () => {
+    const { events, isKeyDown } = await pressAndRelease({ allowRepeat: true });
+    expect(isKeyDown).toBe(false);
+    expect(events).toEqual(['down(keydown)', 'down(keydown)', 'down(keydown)']);
+  });
+
+  it('fires onKeyDown and onKeyUp for each press and release', async () => {
+    const { events, isKeyDown } = await pressAndRelease({ onKeyUp: true });
+    expect(isKeyDown).toBe(false);
+    expect(events).toEqual([
+      'down(keydown)', 'up(keyup)',
+      'down(keydown)', 'up(keyup)',
+      'down(keydown)', 'up(keyup)',
+    ]);
+  });
+
+  it('does not fire onKeyDown on keyup when allowRepeat and onKeyUp are both set', async () => {
+    const { events, isKeyDown } = await pressAndRelease({ allowRepeat: true, onKeyUp: true });
+    expect(isKeyDown).toBe(false);
+    expect(events).toEqual([
+      'down(keydown)', 'up(keyup)',
+      'down(keydown)', 'up(keyup)',
+      'down(keydown)', 'up(keyup)',
+    ]);
+  });
 });
 
 

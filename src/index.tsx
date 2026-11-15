@@ -61,10 +61,8 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
     }
   }, [disabled, allowRepeat, onKeyDown]);
 
-  // 处理 keyup 事件 - 使用原生事件监听
+  // 处理 keyup 事件 - 使用原生事件监听。省略 onKeyUp 时也要清掉按下状态。
   const handleKeyUp = useCallback((keyboardEvent: KeyboardEvent) => {
-    if (disabled || !onKeyUp) return;
-    
     // 检查是否有我们关心的按键被释放
     const currentPressed = Hotkeys.getPressedKeyString();
     const releasedKeys = Array.from(activeKeysRef.current).filter(key => {
@@ -76,14 +74,16 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
     releasedKeys.forEach(shortcut => {
       if (activeKeysRef.current.has(shortcut)) {
         activeKeysRef.current.delete(shortcut);
-        
-        // 构造 HotkeysEvent（基于最后记录的 handle）
-        const hotkeysEvent = {
-          ...currentHandleRef.current,
-          shortcut
-        };
-        
-        onKeyUp(shortcut, keyboardEvent, hotkeysEvent);
+
+        if (!disabled && onKeyUp) {
+          // 构造 HotkeysEvent（基于最后记录的 handle）
+          const hotkeysEvent = {
+            ...currentHandleRef.current,
+            shortcut
+          };
+
+          onKeyUp(shortcut, keyboardEvent, hotkeysEvent);
+        }
       }
     });
     
@@ -111,10 +111,10 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
       Hotkeys.filter = filter;
     }
     
-    // 绑定快捷键
+    // 只绑定 keydown。keyup 交给下面的 document 监听，避免 allowRepeat 时 onKeyDown 在松开时再触发。
     if (keyName) {
       Hotkeys.unbind(keyName);
-      Hotkeys(keyName, { splitKey, keydown: true, keyup: true }, handleKeyDown);
+      Hotkeys(keyName, { splitKey, keydown: true, keyup: false }, handleKeyDown);
     }
     
     return () => {
@@ -126,10 +126,8 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
     };
   }, [keyName, splitKey, filter, handleKeyDown]);
 
-  // 单独管理 keyup 事件监听
+  // 始终监听 keyup，这样省略 onKeyUp 时也能把 isKeyDown 复位。
   useEffect(() => {
-    if (!onKeyUp) return;
-    
     const handleGlobalKeyUp = (e: KeyboardEvent) => {
       // 使用 setTimeout 确保 hotkeys-js 内部状态已更新
       setTimeout(() => handleKeyUp(e), 0);
@@ -144,7 +142,7 @@ const ReactHotkeys = React.forwardRef<ReactHotkeysRef, IReactHotkeysProps>((prop
         document.removeEventListener('keyup', handleGlobalKeyUp);
       }
     };
-  }, [onKeyUp, handleKeyUp]);
+  }, [handleKeyUp]);
 
   return <>{children}</>;
 });
